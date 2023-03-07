@@ -28,7 +28,7 @@ function Food() {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log(`Name:  + ${foodName}, Description: + ${foodDescription}, Size: ${foodSize}, Flavour: ${foodFlavour}, Price: ${foodPrice}`)
+        console.log(`Name: ${foodName}, Description: ${foodDescription}, Size: ${foodSize}, Flavour: ${foodFlavour}, Price: ${foodPrice}`)
     }
   return (
     <div id='addfood-section'>
@@ -36,12 +36,12 @@ function Food() {
         <form onSubmit={handleSubmit}>
         <label>
             Tên món ăn:
-            <input type="text"></input>
+            <input type="text" value={foodName} onChange={handleFoodNameChange}></input>
         </label>
         <br />
         <label>
             Mô tả món ăn:
-            <input type="text"></input>
+            <input type="text" value={foodDescription} onChange={handleFoodDescriptionChange}></input>
         </label>
         <br />
         <label>
@@ -51,17 +51,17 @@ function Food() {
         <br />
         <label>
             Kích cỡ món ăn:
-            <input type="text"></input>
+            <input type="text" value={foodSize} onChange={handleFoodSizeChange}></input>
         </label>
         <br />
         <label>
             Hương vị món ăn:
-            <input type="text"></input>
+            <input type="text" value={foodFlavour} onChange={handleFoodFlavourChange}></input>
         </label>
         <br />
         <label>
             Giá món ăn:
-            <input type="text"></input>
+            <input type="text" value={foodPrice} onChange={handleFoodPriceChange}></input>
         </label>
         <br />
         <button type='submit'>Thêm món</button>
