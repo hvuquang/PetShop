@@ -1,0 +1,21 @@
+
+#login-section {
+    margin: 0 auto;
+    width: 400px;
+}
+
+#login-section label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#login-section input {
+   width: 300px;
+   margin: 10px 0px 10px 20px;
+   padding: 5px 10px;
+}
+
+#login-section button {
+    padding: 10px 20px;
+}

@@ -1,0 +1,15 @@
+
+#addfood-section {
+    margin: 0 auto;
+    width: 300px;
+}
+
+#addfood-section label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#addfood-section button {
+    width: 300px;
+}
