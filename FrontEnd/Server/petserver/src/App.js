@@ -6,7 +6,7 @@ import Food from './pages/FoodPage/Food';
 function App() {
   return (
     <div className="App">
-      <Food />
+      <Login />
     </div>
   );
 }

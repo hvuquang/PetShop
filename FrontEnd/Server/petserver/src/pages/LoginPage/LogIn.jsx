@@ -23,19 +23,13 @@ function Login() {
 
   return (
     <div id='login-section'>
-      <h1>Login</h1>
+      <h1>LOGIN</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input type="text" value={username} onChange={handleUsernameChange} />
-        </label>
+          <input type="text" value={username} onChange={handleUsernameChange} placeholder="Username"/>
         <br />
-        <label>
-          Password:
-          <input type="password" value={password} onChange={handlePasswordChange} />
-        </label>
+          <input type="password" value={password} onChange={handlePasswordChange} placeholder="Password" />
         <br />
-        <button type="submit">Submit</button>
+        <button type="submit">GO</button>
       </form>
     </div>
   );

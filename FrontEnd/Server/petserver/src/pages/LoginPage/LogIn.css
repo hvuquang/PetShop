@@ -2,20 +2,42 @@
 #login-section {
     margin: 0 auto;
     width: 400px;
+    color: #BB3E00;
+    box-shadow: 0 0 5px #000;
+    padding: 20px 40px;
+    border-radius: 5px;
+    font-size: 24px;
+    margin-top: 20px;
 }
 
-#login-section label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+#login-section h1{
+    margin: 0;
+    font-size: 40px;
+    font-weight: bold;
 }
 
 #login-section input {
    width: 300px;
    margin: 10px 0px 10px 20px;
    padding: 5px 10px;
+   color: #BB3E00;
+   font-size: 15px;
+   border: none;
+   border-bottom: 1px #000 solid;
+   font-weight: 600;
+   padding-left: 0;
+}
+
+#login-section input::placeholder {
+    opacity: 0.8;
 }
 
 #login-section button {
-    padding: 10px 20px;
+    padding: 5px 20px;
+    font-size: 20px;
+    background-color: #BB3E00;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    margin-top: 10px;
 }
