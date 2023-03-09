@@ -7,7 +7,7 @@ import AddPet from './pages/AddPetPage/AddPet';
 function App() {
   return (
     <div className="App">
-      <AddFood />
+      <Login />
     </div>
   );
 }

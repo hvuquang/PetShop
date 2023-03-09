@@ -1,15 +1,15 @@
 
-#addfood-section {
+#addpet-section {
     margin: 0 auto;
     width: 300px;
 }
 
-#addfood-section label {
+#addpet-section label {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#addfood-section button {
+#addpet-section button {
     width: 300px;
 }

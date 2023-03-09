@@ -38,9 +38,14 @@ function AddPet() {
         console.log(`Breed: ${pet.petBreed}, Description: ${pet.petDescription}, Age: ${pet.petAge}, Price: ${pet.petPrice}`)
     }
   return (
-    <div id='addfood-section'>
-        <h1>Thêm món ăn</h1>
+    <div id='addpet-section'>
+        <h1>Thêm giống chó</h1>
         <form onSubmit={handleSubmit}>
+        <label>
+            Ảnh:
+            <input type="file" accept='image/*' name='petImage' value={pet.petImage} onChange={updatePet}></input>
+        </label>
+        <br />
         <label>
             Giống:
             <input type="text" name='petBreed' value={pet.petBreed} onChange={updatePet}></input>

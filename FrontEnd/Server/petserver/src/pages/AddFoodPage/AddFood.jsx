@@ -3,13 +3,6 @@ import './AddFood.css'
 
 function AddFood() {
 
-    const [foodName,setFoodName] = useState('')
-    const [foodSize,setFoodSize] = useState('')
-    const [foodDescription,setFoodDescription] = useState('')
-    const [foodFlavour,setFoodFlavour] = useState('')
-    const [foodPrice,setFoodPrice] = useState('')
-    const [foodImage, setFoodImage] = useState('')
-
     const [food,setFood] = useState({
         foodName: '',
         foodSize: '',
@@ -46,8 +39,8 @@ function AddFood() {
         </label>
         <br />
         <label>
-            Ảnh món ăn:
-            <input type="text" value={food.foodImageư} onChange={updateFood}></input>
+            Ảnh:
+            <input type="file" accept='image/*' name='foodImage' value={food.foodImage} onChange={updateFood}></input>
         </label>
         <br />
         <label>
