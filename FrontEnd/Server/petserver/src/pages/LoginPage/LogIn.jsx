@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './LogIn.css'
-
+import axios from "axios"
 
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [account , setAccount] = useState();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -17,7 +18,11 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`Username: ${username} Password: ${password}`);
+    axios.post('http://localhost:8000/v1/account/login', {
+      "tentaikhoan": username,
+      "matkhau": password
+    }).then(res=>setAccount(res.data))
+    console.log(account)
     // Handle login logic here
   };
 
