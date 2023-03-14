@@ -13,11 +13,11 @@
 }
 
 #home-section #search-input {
-    width: 30%;
+    width: 50%;
     margin: 30px 50px;
     padding: 5px;
     color: #BB3E00;
-    border: 1px solid #FFA200;
+    border: 2px solid #FFA200;
     border-radius: 5px;
     outline: #FFA200;
 }
@@ -36,7 +36,7 @@
     justify-content: space-around;
     align-items: center;
     height: 20px;
-    border: 1px solid #FFA200;
+    border: 2px solid #FFA200;
     transition: all .25s;
     color: #fff;
 }
