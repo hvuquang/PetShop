@@ -4,20 +4,22 @@ import './LogIn.css'
 
 
 function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [account, setAccount] = useState({
+    username: '',
+    password: '',
+  })
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+  const updateAccount = (e) => {
+    let fieldName = e.target.name
+    setAccount(existingValue => ({
+      ...existingValue,
+      [fieldName]: e.target.value
+  }))
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`Username: ${username} Password: ${password}`);
+    console.log(`Username: ${account.username} Password: ${account.password}`);
     // Handle login logic here
   };
 
@@ -25,9 +27,9 @@ function Login() {
     <div id='login-section'>
       <h1>LOGIN</h1>
       <form onSubmit={handleSubmit}>
-          <input type="text" value={username} onChange={handleUsernameChange} placeholder="Username"/>
+          <input type="text" name='username' value={account.username} onChange={updateAccount} placeholder="Username"/>
         <br />
-          <input type="password" value={password} onChange={handlePasswordChange} placeholder="Password" />
+          <input type="password" name='password' value={account.password} onChange={updateAccount} placeholder="Password" />
         <br />
         <button type="submit">GO</button>
       </form>
