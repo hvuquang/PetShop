@@ -26,9 +26,8 @@
     box-shadow: 0 0 3px #BB3E00;
 }
 
-#home-section #home-btn {
+#home-btn {
     padding: 5px 20px;
-    color: #BB3E00;
     background-color: #FFA200;
     border: none;
     border-radius: 5px;
@@ -37,6 +36,9 @@
     justify-content: space-around;
     align-items: center;
     height: 20px;
+    border: 1px solid #FFA200;
+    transition: all .25s;
+    color: #fff;
 }
 
 #home-btn #add-icon {
@@ -44,3 +46,7 @@
     height: 20px;
 }
 
+#home-btn:hover {
+    background-color: #fff;
+    color: #BB3E00;
+}
