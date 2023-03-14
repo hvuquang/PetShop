@@ -4,25 +4,36 @@ import axios from "axios"
 
 
 function Login() {
+<<<<<<< HEAD
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [account , setAccount] = useState();
+=======
+  const [account, setAccount] = useState({
+    username: '',
+    password: '',
+  })
+>>>>>>> HuyV1
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
-
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+  const updateAccount = (e) => {
+    let fieldName = e.target.name
+    setAccount(existingValue => ({
+      ...existingValue,
+      [fieldName]: e.target.value
+  }))
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
+<<<<<<< HEAD
     axios.post('http://localhost:8000/v1/account/login', {
       "tentaikhoan": username,
       "matkhau": password
     }).then(res=>setAccount(res.data))
     console.log(account)
+=======
+    console.log(`Username: ${account.username} Password: ${account.password}`);
+>>>>>>> HuyV1
     // Handle login logic here
   };
 
@@ -30,9 +41,9 @@ function Login() {
     <div id='login-section'>
       <h1>LOGIN</h1>
       <form onSubmit={handleSubmit}>
-          <input type="text" value={username} onChange={handleUsernameChange} placeholder="Username"/>
+          <input type="text" name='username' value={account.username} onChange={updateAccount} placeholder="Username"/>
         <br />
-          <input type="password" value={password} onChange={handlePasswordChange} placeholder="Password" />
+          <input type="password" name='password' value={account.password} onChange={updateAccount} placeholder="Password" />
         <br />
         <button type="submit">GO</button>
       </form>
