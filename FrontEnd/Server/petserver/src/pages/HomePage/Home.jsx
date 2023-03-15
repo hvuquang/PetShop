@@ -13,8 +13,14 @@ function Home() {
           <img id="add-icon" src={addicon} alt="add pet icon" />
         </div>
       </div>
-      <div id="home-information">
-        <Card/>
+      <div id="home-container">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
       </div>
     </div>
   );

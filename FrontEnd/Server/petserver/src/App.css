@@ -5,6 +5,5 @@ body, html, #root, #root > div{
 
 #App {
   display: flex;
-  height: 100%;
 }
 

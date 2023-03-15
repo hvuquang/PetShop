@@ -2,11 +2,11 @@
 #home-section {
     width: 1128px;
     margin: 0 auto;
-
+    height: 100%;
 }
 
 #home-search {
-    height: 20%;
+    height: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,4 +49,13 @@
 #home-btn:hover {
     background-color: #fff;
     color: #BB3E00;
+}
+
+#home-container {
+    height: 90%;
+    display: flex;
+    margin: 0 auto;
+    width: 100%;
+    flex-wrap: wrap;
+    overflow-y: scroll;
 }

@@ -30,6 +30,7 @@ body {
 	padding: 10px;
 	border-radius: 20px;
 	overflow: hidden;
+	margin: 10px 40px;
 }
 .card::before,
 .card::after {
