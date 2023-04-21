@@ -20,6 +20,14 @@ const accountController = {
         } catch (error) {
             res.status(500).json(error)
         }
+    },
+    countAccount : async(req , res) =>{
+        try {
+            const countAccount =await accountModel.find().count()
+            res.status(200).json(countAccount)
+        } catch (error) {
+            res.status(500).json(error)
+        }
     }
 }
 
