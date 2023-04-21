@@ -15,7 +15,7 @@ const foodSchema = new mongoose.Schema({
         type : Number , 
         required : true
     }
-})
+}, { timestamps: true })
 
 const Food = mongoose.model('Food',foodSchema)
 module.exports = Food

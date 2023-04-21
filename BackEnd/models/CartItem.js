@@ -2,14 +2,13 @@ const mongoose = require('mongoose')
 
 const cartItemSchema = new mongoose.Schema({
     product_id : {
-        type : mongoose.Schema.Types.ObjectId , 
+        type : Array, 
         ref : 'Product' ,
     },
     quality : {
         type : Number , 
-        required : true
     }
-})
+}, { timestamps: true })
 
 const CartItem = mongoose.model('CartItem',cartItemSchema)
 module.exports = CartItem

@@ -11,7 +11,7 @@ const accessorySchema = new mongoose.Schema({
         ref : 'Color' ,
         required : true
     }
-})
+},{timestamps : true})
 
 const Accessory = mongoose.model('Accessory',accessorySchema)
 module.exports = Accessory

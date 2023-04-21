@@ -10,7 +10,7 @@ const accountSchema = new mongoose.Schema({
         required : true
     },
     phone_number : {
-        type : Number , 
+        type : String , 
         required : true
     },
     username : {
@@ -21,7 +21,7 @@ const accountSchema = new mongoose.Schema({
         type : String ,
         required : true
     },
-    card_id : {
+    cart_id : {
         type : mongoose.Schema.Types.ObjectId ,
         ref : 'CartItem' , 
         required : true
@@ -30,7 +30,7 @@ const accountSchema = new mongoose.Schema({
         type : String , 
         required : true
     }
-})
+},{ timestamps: true })
 
 const Account = mongoose.model('Account',accountSchema)
 module.exports = Account

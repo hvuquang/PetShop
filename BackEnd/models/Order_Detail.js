@@ -23,7 +23,7 @@ const orderDetailSchema = new mongoose.Schema({
         ref : 'Order' , 
         required : true
     }
-})
+}, { timestamps: true })
 
 const Order_Detail = mongoose.model('Order_Detail',orderDetailSchema)
 module.exports = Order_Detail

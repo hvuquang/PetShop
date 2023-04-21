@@ -5,7 +5,7 @@ const sizeSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-})
+}, { timestamps: true })
 
 const Size = mongoose.model('Size', sizeSchema)
 module.exports = Size

@@ -17,7 +17,7 @@ const petSchema = new mongoose.Schema({
         type : String ,
         required : true
     }
-})
+}, { timestamps: true })
 
 const Pet = mongoose.Model('Pet',petSchema)
 module.exports = Pet

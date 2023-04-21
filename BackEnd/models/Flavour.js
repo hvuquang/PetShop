@@ -5,7 +5,7 @@ const flavourSchema = new mongoose.Schema({
         type : String , 
         required : true
     }
-})
+}, { timestamps: true })
 
 const Flavour = mongoose.model('Flavour',flavourSchema)
 module.exports = Flavour
