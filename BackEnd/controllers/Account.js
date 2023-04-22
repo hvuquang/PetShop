@@ -21,6 +21,16 @@ const accountController = {
             res.status(500).json(error)
         }
     },
+    Login : async(req , res) =>{
+        const account = await accountModel.findOne({
+            username : req.body.username
+        })
+        if(account.password === req.body.password){
+            res.status(200).json(account)
+        }
+        else
+            res.status(500).json('Đăng nhập thất bại')
+    },
     countAccount : async(req , res) =>{
         try {
             const countAccount =await accountModel.find().count()
