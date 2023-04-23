@@ -5,29 +5,32 @@ import accessory from "../../images/accessories.png";
 import paw from "../../images/pawprint.png";
 import food from "../../images/pet-food.png";
 import phone from "../../images/phone-call.png";
+import { Link, Outlet } from "react-router-dom";
 
 function SideBar() {
   return (
-    <div id="sidebar-section">
-      <div id="sidebar-header">
-        <img src={shoplogo} alt="a logo with a brown dog" />
-      </div>
-      <div id="sidebar-body">
-        <div className="sb-item">
-          <img src={paw} alt="" />
-          <div>Thú cưng</div>
+    <div>
+      <div id="sidebar-section">
+        <div id="sidebar-header">
+          <img src={shoplogo} alt="a logo with a brown dog" />
         </div>
-        <div className="sb-item">
-          <img src={food} alt="" />
-          Thức ăn
-        </div>
-        <div className="sb-item">
-          <img src={accessory} alt="" />
-          Phụ kiện
-        </div>
-        <div className="sb-item">
-          <img src={phone} alt="" />
-          Dịch vụ
+        <div id="sidebar-body">
+          <div className="sb-item">
+            <img src={paw} alt="" />
+            <Link to={"/petpage"}>Thú cưng</Link>
+          </div>
+          <div className="sb-item">
+            <img src={food} alt="" />
+            <Link to={"/foodpage"}>Thức ăn</Link>
+          </div>
+          <div className="sb-item">
+            <img src={accessory} alt="" />
+            <Link to={"/accessorypage"}>Phụ kiện</Link>
+          </div>
+          <div className="sb-item">
+            <img src={phone} alt="" />
+            <Link to={"/servicepage"}>Dịch vụ</Link>
+          </div>
         </div>
       </div>
     </div>
