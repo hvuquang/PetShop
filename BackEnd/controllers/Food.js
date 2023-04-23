@@ -245,6 +245,22 @@ const foodController = {
                         foreignField: "_id", // Trường "id" trong bảng "food"
                         as: "foodData" // Tên gán cho kết quả nối là "foodData"
                     }
+                } , 
+                {
+                    $lookup : {
+                        from : "flavours" ,
+                        localField : "foodData.flavour_id" ,
+                        foreignField : "_id" ,
+                        as : "flavourData"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "sizes",
+                        localField: "foodData.size_id",
+                        foreignField: "_id",
+                        as: "sizeData"
+                    }
                 }
             ]);
             res.status(200).json(allProduct)
