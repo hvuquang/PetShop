@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const petSchema = new mongoose.Schema({
     price : {
-        type : Nmuber , 
+        type : Number , 
         required : true
     },
     breed : {
@@ -10,7 +10,7 @@ const petSchema = new mongoose.Schema({
         required : true
     },
     age : {
-        type : Number ,
+        type : String ,
         required : true
     },
     gender : {
@@ -19,5 +19,5 @@ const petSchema = new mongoose.Schema({
     }
 }, { timestamps: true })
 
-const Pet = mongoose.Model('Pet',petSchema)
+const Pet = mongoose.model('Pet',petSchema)
 module.exports = Pet

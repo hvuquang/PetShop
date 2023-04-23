@@ -261,9 +261,20 @@ const foodController = {
                         foreignField: "_id",
                         as: "sizeData"
                     }
+                },
+                {
+                    $unwind : '$foodData'
                 }
             ]);
             res.status(200).json(allProduct)
+        } catch (error) {
+            res.status(500).json(error)
+        }
+    },
+    countFood : async(req , res) =>{
+        try {
+            const countFood = await foodModel.count()
+            res.status(200).json(countFood)
         } catch (error) {
             res.status(500).json(error)
         }
