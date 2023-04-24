@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const productModel = require('../models/Product')
 const accountModel = require('../models/Account')
 const cartModel = require('../models/CartItem')
 
@@ -58,10 +58,53 @@ const accountController = {
             //         }
             //     }
             // ])
+            const account = await accountModel.findById(id)
+            const cart = await cartModel.findById(account.cart_id)
+            cart.product_id.push(req.body.product)
+            await cart.save()
+            res.status(200).json(cart)
+        } catch (error) {
+            res.status(500).json(error)
+        }
+    },
+    readCartOfUser : async(req , res) =>{
+        try {
+            const id = req.params._id
+            // const account = await accountModel.findById(id).then(accounts => {
+            //     return accountModel.aggregate([
+            //         {
+            //             $match : {
+            //                 _id : accounts._id
+            //             }
+            //         },
+            //         {
+            //             $lookup : {
+            //                 from: 'cartitems',
+            //                 localField: 'cart_id',
+            //                 foreignField: '_id',
+            //                 as: 'cartData'
+            //             }
+            //         },
+            //         {
+            //             $lookup : {
+            //                 from : 'products' ,
+            //                 localField : 'cartData.product_id' ,
+            //                 foreignField : '_id' ,
+            //                 as : 'productData'
+            //             }
+            //         }
+            //     ])
+            // })
             const account = await accountModel.findById(id).populate('cart_id')
-            account.cart_id.product_id.push(req.body.product)
-            await account.save()
-            res.status(200).json(account)
+            let products = account.cart_id.product_id
+            const detailedProduct = await productModel.aggregate([
+                {
+                    $match : {
+                        _id : {$in : products}
+                    }
+                }
+            ])
+            res.status(200).json(detailedProduct)
         } catch (error) {
             res.status(500).json(error)
         }

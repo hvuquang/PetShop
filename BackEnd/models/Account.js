@@ -29,6 +29,10 @@ const accountSchema = new mongoose.Schema({
     address : {
         type : String , 
         required : true
+    },
+    admin : {
+        type : Boolean ,
+        default : false
     }
 },{ timestamps: true })
 
