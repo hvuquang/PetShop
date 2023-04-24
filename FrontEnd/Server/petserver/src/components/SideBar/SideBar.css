@@ -28,8 +28,16 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+
+}
+
+.sb-item > a {
+    text-decoration: none;
+    color: #BB3E00;
 }
 
 .sb-item:hover {
     background-color: #FEBC37;
+    transform: scale(1.1);
+    transition: 0.25s;
 }

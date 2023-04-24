@@ -14,7 +14,6 @@ function App() {
     <div id="App">
       <SideBar />
       <Outlet />
-      {/* <Home /> */}
     </div>
   );
 }
