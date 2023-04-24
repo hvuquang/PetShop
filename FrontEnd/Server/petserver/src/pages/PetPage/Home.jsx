@@ -5,8 +5,8 @@ import Card from "../../components/Card/Card";
 
 function Home() {
   return (
-    <div id="home-section">
-      <div id="home-search">
+    <div className="home-section">
+      <div className = "home-search">
         <input id="search-input" type="text" placeholder="Tìm kiếm ..." />
         <div id="home-btn">
           <p>Thêm</p>

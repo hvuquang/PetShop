@@ -12,8 +12,15 @@ import Home from './pages/PetPage/Home';
 import Service from './pages/ServicePage/Service';
 import Food from './pages/FoodPage/Food';
 import Accessory from './pages/AccessoryPage/Accessory';
+import DogDetail from './pages/DogDetail/DogDetail';
+import LogIn from './pages/LoginPage/LogIn';
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <LogIn />,
+    errorElement: <ErrorPage />,
+  },
   {
     path: "/",
     element: <App />,
@@ -34,6 +41,10 @@ const router = createBrowserRouter([
     {
       path: "/accessorypage",
       element: <Accessory />,
+    },
+    {
+      path: "/petpage/petdetail",
+      element: <DogDetail />
     }
   ],
 },
@@ -42,7 +53,6 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
     <RouterProvider router={router} />
   </React.StrictMode>
 );

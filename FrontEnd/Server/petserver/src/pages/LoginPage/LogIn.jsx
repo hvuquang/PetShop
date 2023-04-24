@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./LogIn.css";
+import { Link } from "react-router-dom";
 
 function Login() {
   const [account, setAccount] = useState({
@@ -41,7 +42,7 @@ function Login() {
           placeholder="Password"
         />
         <br />
-        <button type="submit">GO</button>
+        <button type="submit"><Link to="/petpage">GO</Link></button>
       </form>
     </div>
   );
