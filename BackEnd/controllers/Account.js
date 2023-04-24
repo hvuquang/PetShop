@@ -67,7 +67,7 @@ const accountController = {
             res.status(500).json(error)
         }
     },
-    readCartOfUser : async(req , res) =>{
+    cartContainFood : async(req , res) =>{
         try {
             const id = req.params._id
             // const account = await accountModel.findById(id).then(accounts => {
@@ -102,6 +102,61 @@ const accountController = {
                     $match : {
                         _id : {$in : products}
                     }
+                } ,
+                {
+                    $lookup : {
+                        from : "foods" ,
+                        localField : "id" ,
+                        foreignField : "_id" ,
+                        as : "foodData"
+                    }
+                } ,
+                {
+                    $lookup : {
+                        from : "flavours" ,
+                        localField : "foodData.flavour_id" ,
+                        foreignField : "_id" ,
+                        as : "flavourData"
+                    }
+                } ,
+                {
+                    $lookup : {
+                        from : "sizes" ,
+                        localField : "foodData.size_id" ,
+                        foreignField : "_id" ,
+                        as : "sizeData"
+                    }
+                } ,
+                {
+                    $unwind : "$foodData"
+                }
+            ])
+            res.status(200).json(detailedProduct)
+        } catch (error) {
+            res.status(500).json(error)
+        }
+    },
+    cartContainPet: async (req, res) => {
+        try {
+            const id = req.params._id
+            const account = await accountModel.findById(id).populate('cart_id')
+            let products = account.cart_id.product_id
+            const detailedProduct = await productModel.aggregate([
+                {
+                    $match: {
+                        _id: { $in: products }
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "pets",
+                        localField: "id",
+                        foreignField: "_id",
+                        as: "petData"
+                    }
+                },
+                {
+                    $unwind: "$petData"
                 }
             ])
             res.status(200).json(detailedProduct)
