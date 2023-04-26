@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function DogDetail() {
   return (
-    <div className="dog bg-modal">
+    <div className="dog-bg-modal">
       <div className="modal-content">
         <div className="content-header">
           <div className="content-left">
