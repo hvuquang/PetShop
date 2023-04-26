@@ -16,7 +16,6 @@ function App() {
       <div id="outlet">
         <Outlet />
       </div>
-      {/* <DogDetail /> */}
     </div>
   );
 }

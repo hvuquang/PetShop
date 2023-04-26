@@ -1,15 +1,48 @@
+.bg-modal {
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 100%;
+    width: 85.8%;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.modal-active {
+    visibility: visible;
+    opacity: 1;
+}
 
 #addpet-section {
     margin: 0 auto;
-    width: 300px;
+    width: 600px;
+    background-color: white;
+    padding: 5px 15px;
+    margin-top: 10px;
+    border-radius: 10px;
 }
 
-#addpet-section label {
+
+.addpet-title {
+    font-weight: bolder;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.title {
+
+}
+
+.addpet-input {
+    padding: 5px 15px;
+    width: 280px;
+    border-radius: 10px;
+    border: 0.5px black solid;
 }
 
 #addpet-section button {
-    width: 300px;
+    width: 150px;
 }
