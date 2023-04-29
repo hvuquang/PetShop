@@ -1,0 +1,74 @@
+.service-card-container {
+    width: 320px;
+    height: 450px;
+    /* border: 1px solid black; */
+    box-shadow: 0 0 8px black;
+    margin: 15px;
+    font-size: 17px;
+    padding: 15px;
+}
+
+.service-card-container:hover {
+    box-shadow: 4px 4px 8px #FFA200;
+    transform: scale(1.05);
+    transition: all 0.25s;
+    z-index: 10;
+}
+
+.service-container-header {
+    display: flex;
+}
+
+.service-container-header > img {
+    margin: 10px 20px;
+}
+
+.service-container-body {
+    margin: 0 auto;
+}
+
+.service-body-section {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 20px;
+}
+
+.service-body-title {
+    font-weight: bolder;
+}
+
+.service-container-footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.service-container-footer > button {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+}
+
+#service-container-accept {
+    background-color: green;
+}
+
+#service-container-accept:hover {
+    border: 2px solid black;
+    color: white;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+#service-container-decline {
+    background-color: white;
+    border: 2px solid red;
+}
+
+#service-container-decline:hover {
+    background-color: red;
+    border: 2px solid black;
+    color: white;
+    cursor: pointer;
+    transition: 0.15s;
+}

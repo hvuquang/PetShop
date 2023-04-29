@@ -2,6 +2,7 @@ import React from "react";
 import "./Service.css";
 import addicon from "../../images/pet-icon.png";
 import Card from "../../components/Card/Card";
+import ServiceCard from "../../components/ServiceCard/ServiceCard";
 
 function Service() {
   return (
@@ -14,12 +15,9 @@ function Service() {
         </div>
       </div>
       <div id="home-container">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+          <ServiceCard />
+          <ServiceCard />
+          <ServiceCard />
       </div>
     </div>
   );
