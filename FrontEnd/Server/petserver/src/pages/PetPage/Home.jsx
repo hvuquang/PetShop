@@ -24,13 +24,13 @@ function Home() {
         </div>
       </div>
       <div id="home-container">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Card cardtype="pet"/>
+        <Card cardtype="pet"/>
+        <Card cardtype="pet"/>
+        <Card cardtype="pet"/>
+        <Card cardtype="pet"/>
+        <Card cardtype="pet"/>
+        <Card cardtype="pet"/>
       </div>
       <AddPet toggle={modalState} action={openModal}/>
     </div>

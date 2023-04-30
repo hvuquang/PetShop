@@ -8,6 +8,7 @@ import Home from "./pages/PetPage/Home";
 import SideBar from "./components/SideBar/SideBar";
 import { Outlet } from "react-router-dom";
 import DogDetail from "./pages/DogDetail/DogDetail";
+import FoodDetail from "./pages/FoodDetail/FoodDetail";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <div id="outlet">
         <Outlet />
       </div>
+      {/* <FoodDetail /> */}
     </div>
   );
 }

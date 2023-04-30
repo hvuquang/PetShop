@@ -14,8 +14,10 @@ function Food() {
         </div>
       </div>
       <div id="home-container">
-          <Card />
-          <Card />
+          <Card cardtype="food"/>
+          <Card cardtype="food"/>
+          <Card cardtype="food"/>
+          <Card cardtype="food"/>
       </div>
     </div>
   );

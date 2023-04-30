@@ -11,6 +11,7 @@ import Food from "./pages/FoodPage/Food";
 import Accessory from "./pages/AccessoryPage/Accessory";
 import DogDetail from "./pages/DogDetail/DogDetail";
 import LogIn from "./pages/LoginPage/LogIn";
+import FoodDetail from "./pages/FoodDetail/FoodDetail";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
     path: "/petpage/petdetail",
     element: <DogDetail />,
   },
+  {
+    path: "/foodpage/fooddetail",
+    element: <FoodDetail />,
+  }
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
