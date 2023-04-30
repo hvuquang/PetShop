@@ -46,100 +46,123 @@ function AddPet(props) {
       <div id="addpet-section">
         <h1>Thêm</h1>
         <form onSubmit={handleSubmit}>
-          <div>
-            Ảnh:
-            <input
-              type="file"
-              accept="image/*"
-              name="petImage"
-              value={pet.petImage}
-              onChange={updatePet}
-            ></input>
+          <div className="form-section">
+            <div>
+              <div className="addpet-title">
+                Giống:
+                <input
+                  type="text"
+                  name="petBreed"
+                  value={pet.petBreed}
+                  onChange={updatePet}
+                  className="addpet-input"
+                ></input>
+              </div>
+              <div className="addpet-title">
+                Về giống:
+                <input
+                  type="text"
+                  name="petDescription"
+                  value={pet.petDescription}
+                  onChange={updatePet}
+                  className="addpet-input about-input"
+                  multiple
+                ></input>
+              </div>
+              <div className="addpet-title">
+                Màu:
+                <input
+                  type="text"
+                  name="petColor"
+                  value={pet.petColor}
+                  onChange={updatePet}
+                  className="addpet-input"
+                ></input>
+              </div>
+              <div className="addpet-title">
+                Tuổi thọ:
+                <input
+                  type="text"
+                  name="petAge"
+                  value={pet.petAge}
+                  onChange={updatePet}
+                  className="addpet-input"
+                ></input>
+              </div>
+              <div className="addpet-title">
+                Chiều cao:
+                <input
+                  type="text"
+                  name="petHeight"
+                  value={pet.petHeight}
+                  onChange={updatePet}
+                  className="addpet-input"
+                ></input>
+              </div>
+              <div className="addpet-title">
+                Cân nặng:
+                <input
+                  type="text"
+                  name="petWeight"
+                  value={pet.petWeight}
+                  onChange={updatePet}
+                  className="addpet-input"
+                ></input>
+              </div>
+            </div>
+            <div>
+              <div className="addpet-title">
+                Ảnh
+                <br />
+                <input
+                  type="file"
+                  accept="image/*"
+                  name="petImage"
+                  value={pet.petImage}
+                  onChange={updatePet}
+                  className="addpet-input"
+                ></input>
+              </div>
+              <div className="addpet-title">
+                Xuất xứ:
+                <input
+                  type="text"
+                  name="petOrigin"
+                  value={pet.petOrigin}
+                  onChange={updatePet}
+                  className="addpet-input"
+                ></input>
+              </div>
+              <div className="addpet-title">
+                Tính cách:
+                <input
+                  type="text"
+                  name="petCharacter"
+                  value={pet.petCharacter}
+                  onChange={updatePet}
+                  className="addpet-input"
+                ></input>
+              </div>
+              <div className="addpet-title">
+                Giá:
+                <input
+                  type="text"
+                  name="petPrice"
+                  value={pet.petPrice}
+                  onChange={updatePet}
+                  className="addpet-input"
+                ></input>
+              </div>
+            </div>
           </div>
-          <div className="addpet-title">
-            <p className="title">Giống</p>
-            <input
-              type="text"
-              name="petBreed"
-              value={pet.petBreed}
-              onChange={updatePet}
-              className="addpet-input"
-            ></input>
+          <div className="form-footer">
+            <button className="form-add-btn" type="submit">
+              Thêm giống
+            </button>
+            <button className="form-exit-btn" onClick={action}>
+              Thoát
+            </button>
           </div>
-          <div className="addpet-title">
-            Về giống:
-            <input
-              type="text"
-              name="petDescription"
-              value={pet.petDescription}
-              onChange={updatePet}
-            ></input>
-          </div>
-          <div>
-            Màu:
-            <input
-              type="text"
-              name="petColor"
-              value={pet.petColor}
-              onChange={updatePet}
-            ></input>
-          </div>
-          <div>
-            Tuổi thọ:
-            <input
-              type="text"
-              name="petAge"
-              value={pet.petAge}
-              onChange={updatePet}
-            ></input>
-          </div>
-          <div>
-            Chiều cao:
-            <input
-              type="text"
-              name="petHeight"
-              value={pet.petHeight}
-              onChange={updatePet}
-            ></input>
-          </div>
-          <div>
-            Cân nặng:
-            <input
-              type="text"
-              name="petWeight"
-              value={pet.petWeight}
-              onChange={updatePet}
-            ></input>
-          </div>
-          <div>
-            Xuất xứ:
-            <input
-              type="text"
-              name="petOrigin"
-              value={pet.petOrigin}
-              onChange={updatePet}
-            ></input>
-          </div>
-          <div>
-            Tính cách:
-            <input
-              type="text"
-              name="petCharacter"
-              value={pet.petCharacter}
-              onChange={updatePet}
-            ></input>
-          </div>
-          <div>
-            Giá:
-            <input
-              type="text"
-              name="petPrice"
-              value={pet.petPrice}
-              onChange={updatePet}
-            ></input>
-          </div>
-          <button type="submit">Thêm giống</button>
-          <button onClick={action}>Thoát</button>
         </form>
       </div>
     </div>
