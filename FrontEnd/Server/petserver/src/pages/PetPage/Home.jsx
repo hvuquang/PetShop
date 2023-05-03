@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import "./Home.css";
 import addicon from "../../images/pet-icon.png";
 import Card from "../../components/Card/Card";
 import CustomPopup from "../../components/popup/CustomPopup";
 import AddPet from "../AddPetPage/AddPet";
+import axios from "axios"
 
 function Home() {
   const [modalState, setmodalState] = useState(false)
 
+  useEffect(()=>{
+    axios.get('localhost:8000/v1/pet/readAllPet').then(res=>{
+      console.log(res.data)
+    })
+  },[])
   function openModal() {
     setmodalState(!modalState)
   }
