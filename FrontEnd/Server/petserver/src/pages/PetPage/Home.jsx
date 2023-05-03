@@ -11,6 +11,34 @@ function Home() {
   function openModal() {
     setmodalState(!modalState)
   }
+
+  const [pet, setPet] = useState({
+    petBreed: "",
+    petColor: "",
+    petDescription: "",
+    petHeight: "",
+    petWeight: "",
+    petImage: "",
+    petOrigin: "",
+    petCharacter: "",
+    petAge: "",
+    petPrice: "",
+  });
+
+  const updatePet = (e) => {
+    const fieldName = e.target.name;
+    setPet((existingValues) => ({
+      ...existingValues,
+      [fieldName]: e.target.value,
+    }));
+  };
+
+  const showPet = () => {
+    console.log(
+      `Breed: ${pet.petBreed}, Description: ${pet.petDescription}, Age: ${pet.petAge}, Price: ${pet.petPrice}`
+    );
+  }
+
   return (
     <div className="home-section">
       {/* {modalState.toString()} */}
@@ -32,7 +60,7 @@ function Home() {
         <Card cardtype="pet"/>
         <Card cardtype="pet"/>
       </div>
-      <AddPet toggle={modalState} action={openModal}/>
+      <AddPet pet={pet} toggle={modalState} action={openModal} addpet={updatePet} showPet={showPet}/>
     </div>
   );
 }

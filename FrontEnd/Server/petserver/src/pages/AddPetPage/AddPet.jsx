@@ -13,33 +13,35 @@ function AddPet(props) {
 
   const modalState = props.toggle;
   const action = props.action;
+  let pet = props.pet;
+  let updatePet = props.addpet;
+  const showPet = props.showPet;
+  // const [pet, setPet] = useState({
+  //   petBreed: "",
+  //   petColor: "",
+  //   petDescription: "",
+  //   petHeight: "",
+  //   petWeight: "",
+  //   petImage: "",
+  //   petOrigin: "",
+  //   petCharacter: "",
+  //   petAge: "",
+  //   petPrice: "",
+  // });
 
-  const [pet, setPet] = useState({
-    petBreed: "",
-    petColor: "",
-    petDescription: "",
-    petHeight: "",
-    petWeight: "",
-    petImage: "",
-    petOrigin: "",
-    petCharacter: "",
-    petAge: "",
-    petPrice: "",
-  });
-
-  const updatePet = (e) => {
-    const fieldName = e.target.name;
-    setPet((existingValues) => ({
-      ...existingValues,
-      [fieldName]: e.target.value,
-    }));
-  };
+  // const updatePet = (e) => {
+  //   const fieldName = e.target.name;
+  //   setPet((existingValues) => ({
+  //     ...existingValues,
+  //     [fieldName]: e.target.value,
+  //   }));
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(
-      `Breed: ${pet.petBreed}, Description: ${pet.petDescription}, Age: ${pet.petAge}, Price: ${pet.petPrice}`
-    );
+    // console.log(
+    //   `Breed: ${pet.petBreed}, Description: ${pet.petDescription}, Age: ${pet.petAge}, Price: ${pet.petPrice}`
+    // );
   };
   return (
     <div className={`bg-modal ${modalState ? "modal-active" : ""}`}>
@@ -156,7 +158,7 @@ function AddPet(props) {
             </div>
           </div>
           <div className="form-footer">
-            <button className="form-add-btn" type="submit">
+            <button className="form-add-btn" type="submit" onClick={showPet}>
               Thêm giống
             </button>
             <button className="form-exit-btn" onClick={action}>
