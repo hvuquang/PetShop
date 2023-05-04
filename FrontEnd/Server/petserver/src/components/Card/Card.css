@@ -25,7 +25,7 @@ body {
 	height: 250px;
 	color: #a18a96;
 	text-align: center;
-	background: url('./gold.jpg') center no-repeat;
+	/* background: url('./gold.jpg') center no-repeat; */
 	background-size: cover;
 	padding: 10px;
 	border-radius: 20px;

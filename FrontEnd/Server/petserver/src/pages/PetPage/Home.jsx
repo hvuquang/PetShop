@@ -8,10 +8,12 @@ import axios from "axios"
 
 function Home() {
   const [modalState, setmodalState] = useState(false)
+  const [petList, setPetList] = useState([]);
 
   useEffect(()=>{
-    axios.get('localhost:8000/v1/pet/readAllPet').then(res=>{
-      console.log(res.data)
+    axios.get('http://localhost:8000/v1/pet/readAllPet').then(res=>{
+      console.log(res.data);
+      setPetList(res.data);
     })
   },[])
   function openModal() {
@@ -58,13 +60,16 @@ function Home() {
         </div>
       </div>
       <div id="home-container">
+        {petList.map((petItem, key) => {
+          return <Card petI={petItem} cardtype="pet" key={key}/>
+        })}
+        {/* <Card cardtype="pet"/>
         <Card cardtype="pet"/>
         <Card cardtype="pet"/>
         <Card cardtype="pet"/>
         <Card cardtype="pet"/>
         <Card cardtype="pet"/>
-        <Card cardtype="pet"/>
-        <Card cardtype="pet"/>
+        <Card cardtype="pet"/> */}
       </div>
       <AddPet pet={pet} toggle={modalState} action={openModal} addpet={updatePet} showPet={showPet}/>
     </div>
