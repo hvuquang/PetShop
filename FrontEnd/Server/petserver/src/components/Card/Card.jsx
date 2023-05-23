@@ -5,40 +5,60 @@ import { bool } from "prop-types";
 import dogimg from "../../images/golden.png"
 
 export default function Card(props) {
-  const cardtype = props.cardtype;
-  console.log(props.petI);
-  let link = "/";
-  let petDescription = "";
-  let linkimg = "";
+  const cardtype = props.cardtype
+  let link = "/"
+  let petDescription = ""
+  let linkimg = ""
+  let cardTitle = ''
+  let cardDescription = ''
+  let food = props.foodI
+  let price = 0
 
   function CardType() {
     if (props.cardtype === "pet") {
-      link = "/petpage/petdetail";
+      link = "/petpage/petdetail"
     } else if (props.cardtype === "food") {
-      link = "/foodpage/fooddetail";
+      link = "/foodpage/fooddetail"
     }
   }
 
-  CardType();
-  shortDescription();
+  CardType()
+  setCard()
 
   function isUndefined() {
     if (props.petI === undefined) return true;
     return false;
   }
 
-  function shortDescription() {
-    if (props.petI === undefined) {
+  function setCard() {
+    if (props.cardtype === "food") {
+      cardTitle = props.foodI !== undefined ? props.foodI.name : "Thức ăn chó mèo"
+      price = props.foodI !== undefined ? props.foodI.foodData.price : "8000000"
+      shortDescription(props.foodI)
+    }
+    else if (props.cardtype === "pet") {
+      cardTitle = props.petI !== undefined ? props.petI.name : "Golden Treiver"
+      price = props.petI !== undefined ? props.petI.petData.price : "8000000"
+      shortDescription(props.petI)
+    }
+  }
+
+  function shortDescription(item) {
+    if (item === undefined) {
+      cardDescription = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae,reprehenderit! Neque consequatur velit..."
       linkimg = dogimg;
       return
     }
     else {
-      linkimg = "http://localhost:8000/" + props.petI.image_url;
+      linkimg = "http://localhost:8000/" + item.image_url;
       linkimg = linkimg.slice(0,29) + "/" + linkimg.slice(30);
-      if (props.petI.description.length > 60) {
-        petDescription = props.petI.description.slice(0, 60) + "...";
+      if (item.description.length > 60) {
+        cardDescription = item.description.slice(0, 60) + "...";
       } else {
-        petDescription = props.petI.description;
+        cardDescription = item.description;
+      }
+      if (item.name.length > 30) {
+        cardTitle = item.name.slice(0,30) + "..."
       }
     }
   }
@@ -55,17 +75,14 @@ export default function Card(props) {
     >
       <div class="card__body">
         <h2 class="card__title">
-          {props.petI !== undefined ? props.petI.name : "Golden Treiver"}
+          {cardTitle}
         </h2>
         <p>
-          {props.petI !== undefined
-            ? petDescription
-            : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae,reprehenderit! Neque consequatur velit..."}
+          {cardDescription}
         </p>
         <p class="card__price">
-          {props.petI !== undefined ? props.petI.petData.price : "8000000"} VND
+          {price} VND
         </p>
-        {/* <a href="#">More info </a> */}
         <Link to={link}>More info</Link> <p>➡️</p>
       </div>
     </article>

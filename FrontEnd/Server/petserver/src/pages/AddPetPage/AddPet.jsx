@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./AddPet.css";
+import axios from "axios";
 
 function AddPet(props) {
   // const [petBreed,setPetBreed] = useState('')
@@ -7,7 +8,7 @@ function AddPet(props) {
   // const [petDescription,setPetDescription] = useState('')
   // const [petHeight,setPetHeight] = useState('')
   // const [petWeight,setPetWeight] = useState('')
-  // const [petImage, setPetImage] = useState('')
+  const [img, setImg] = useState()
   // const [petOrigin, setPetOrigin] = useState('')
   // const [petCharacter, setPetCharacter] = useState('')
 
@@ -16,33 +17,39 @@ function AddPet(props) {
   let pet = props.pet;
   let updatePet = props.addpet;
   const showPet = props.showPet;
-  // const [pet, setPet] = useState({
-  //   petBreed: "",
-  //   petColor: "",
-  //   petDescription: "",
-  //   petHeight: "",
-  //   petWeight: "",
-  //   petImage: "",
-  //   petOrigin: "",
-  //   petCharacter: "",
-  //   petAge: "",
-  //   petPrice: "",
-  // });
 
-  // const updatePet = (e) => {
-  //   const fieldName = e.target.name;
-  //   setPet((existingValues) => ({
-  //     ...existingValues,
-  //     [fieldName]: e.target.value,
-  //   }));
-  // };
+  const url = "http://localhost:8000/v1/pet/add";
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // console.log(
     //   `Breed: ${pet.petBreed}, Description: ${pet.petDescription}, Age: ${pet.petAge}, Price: ${pet.petPrice}`
     // );
+    const formD = new FormData();
+    formD.append("name", pet.petBreed)
+    formD.append("breed", pet.petBreed)
+    formD.append("description", pet.petDescription)
+    formD.append("product_type", 'Pet')
+    formD.append("price", pet.petPrice)
+    formD.append("gender", 'Duc')
+    formD.append("age", pet.petAge)
+    formD.append("image_url", pet.petImage)
+    axios.post(url, formD).then(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   };
+
+  const onSelectedFile = (e) => {
+    setImg(e.target.files[0])
+    console.log(e.target.files[0])
+    console.log(img)
+}
+  
   return (
     <div className={`bg-modal ${modalState ? "modal-active" : ""}`}>
       <div id="addpet-section">
@@ -120,8 +127,8 @@ function AddPet(props) {
                   type="file"
                   accept="image/*"
                   name="petImage"
-                  value={pet.petImage}
-                  onChange={updatePet}
+                  value={img}
+                  onChange={() => updatePet}
                   className="addpet-input"
                 ></input>
               </div>
