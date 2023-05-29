@@ -3,14 +3,8 @@ import "./AddPet.css";
 import axios from "axios";
 
 function AddPet(props) {
-  // const [petBreed,setPetBreed] = useState('')
-  // const [petColor,setPetColor] = useState('')
-  // const [petDescription,setPetDescription] = useState('')
-  // const [petHeight,setPetHeight] = useState('')
-  // const [petWeight,setPetWeight] = useState('')
+
   const [img, setImg] = useState()
-  // const [petOrigin, setPetOrigin] = useState('')
-  // const [petCharacter, setPetCharacter] = useState('')
 
   const modalState = props.toggle;
   const action = props.action;
@@ -22,9 +16,7 @@ function AddPet(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(
-    //   `Breed: ${pet.petBreed}, Description: ${pet.petDescription}, Age: ${pet.petAge}, Price: ${pet.petPrice}`
-    // );
+
     const formD = new FormData();
     formD.append("name", pet.petBreed)
     formD.append("breed", pet.petBreed)

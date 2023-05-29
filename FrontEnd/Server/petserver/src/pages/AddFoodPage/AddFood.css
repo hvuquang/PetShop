@@ -1,15 +1,25 @@
 
+
+.food-form-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: scroll;
+}
+
 #addfood-section {
     margin: 0 auto;
-    width: 300px;
+    width: 700px;
+    background-color: white;
+    padding: 0px 15px 15px 15px;
+    margin-top: 10px;
+    border-radius: 10px;
 }
 
-#addfood-section label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+
+.multivalue-section {
+    background-color: white;
+    color:gray;
 }
 
-#addfood-section button {
-    width: 300px;
-}

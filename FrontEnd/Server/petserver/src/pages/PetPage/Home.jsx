@@ -39,15 +39,11 @@ function Home() {
         ...existingValues,
         [fieldName]: e.target.value,
       }));
-    if (fieldName == "petImage") {
-      console.log(e.target.value)
-    }
   };
 
 
   return (
     <div className="home-section">
-      {/* {modalState.toString()} */}
       <div className="home-search">
         <input id="search-input" type="text" placeholder="Tìm kiếm ..." />
         <div id="home-btn">
