@@ -13,11 +13,12 @@ function Home() {
 
   useEffect(() => {
     axios.get("http://localhost:8000/v1/pet/readAllPet").then((res) => {
-      setPetList(res.data);
+      setPetList(res.data)
     });
   }, []);
-  function openModal() {
-    setmodalState(!modalState);
+  function openModal(event) {
+    event.preventDefault()
+    setmodalState(!modalState)
   }
 
   const [pet, setPet] = useState({

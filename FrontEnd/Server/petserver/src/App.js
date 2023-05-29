@@ -9,6 +9,7 @@ import SideBar from "./components/SideBar/SideBar";
 import { Outlet } from "react-router-dom";
 import DogDetail from "./pages/DogDetail/DogDetail";
 import FoodDetail from "./pages/FoodDetail/FoodDetail";
+import Uploader from "./components/Uploader/Uploader";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Outlet />
       </div>
       {/* <FoodDetail /> */}
+      {/* <Uploader /> */}
     </div>
   );
 }

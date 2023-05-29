@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./AddPet.css";
 import axios from "axios";
+import Uploader from "../../components/Uploader/Uploader";
 
 function AddPet(props) {
 
@@ -10,7 +11,8 @@ function AddPet(props) {
   const action = props.action;
   let pet = props.pet;
   let updatePet = props.addpet;
-  const showPet = props.showPet;
+
+
 
   const url = "http://localhost:8000/v1/pet/add";
 
@@ -38,15 +40,14 @@ function AddPet(props) {
 
   const onSelectedFile = (e) => {
     setImg(e.target.files[0])
-    console.log(e.target.files[0])
-    console.log(img)
 }
+
   
   return (
     <div className={`bg-modal ${modalState ? "modal-active" : ""}`}>
       <div id="addpet-section">
         <h1>Thêm</h1>
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="form-section">
             <div>
               <div className="addpet-title">
@@ -115,14 +116,14 @@ function AddPet(props) {
               <div className="addpet-title">
                 Ảnh
                 <br />
-                <input
+                {/* <input
                   type="file"
                   accept="image/*"
                   name="petImage"
-                  // value={img}
                   onChange={onSelectedFile}
                   className="addpet-input"
-                ></input>
+                ></input> */}
+                <Uploader value={img} updateImg = {setImg} />
               </div>
               <div className="addpet-title">
                 Xuất xứ:
@@ -157,7 +158,7 @@ function AddPet(props) {
             </div>
           </div>
           <div className="form-footer">
-            <button className="form-add-btn" type="submit" onClick={showPet}>
+            <button className="form-add-btn" type="submit" onClick={handleSubmit}>
               Thêm giống
             </button>
             <button className="form-exit-btn" onClick={action}>
