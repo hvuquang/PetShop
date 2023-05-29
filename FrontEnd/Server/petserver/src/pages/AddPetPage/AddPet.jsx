@@ -33,7 +33,7 @@ function AddPet(props) {
     formD.append("price", pet.petPrice)
     formD.append("gender", 'Duc')
     formD.append("age", pet.petAge)
-    formD.append("image_url", pet.petImage)
+    formD.append("image_url", img)
     axios.post(url, formD).then(
       (response) => {
         console.log(response);
@@ -127,8 +127,8 @@ function AddPet(props) {
                   type="file"
                   accept="image/*"
                   name="petImage"
-                  value={img}
-                  onChange={() => updatePet}
+                  // value={img}
+                  onChange={onSelectedFile}
                   className="addpet-input"
                 ></input>
               </div>

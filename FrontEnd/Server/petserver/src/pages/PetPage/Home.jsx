@@ -39,6 +39,9 @@ function Home() {
         ...existingValues,
         [fieldName]: e.target.value,
       }));
+    if (fieldName == "petImage") {
+      console.log(e.target.value)
+    }
   };
 
 
