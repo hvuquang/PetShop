@@ -10,7 +10,8 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function AddService(props) {
   const [img, setImg] = useState();
-
+  //click vào dịch vụ
+  const [serviceClicked, setServiceClicked] = useState(false);
   const [date, setDate] = useState(new Date());
   //cài đặt cho DatePicker React
   const modalState = props.toggle;
@@ -19,9 +20,9 @@ function AddService(props) {
   let updateFood = props.addfood;
   const showFood = props.showFood;
 
-    // const handleDateChange = (date) => {
-    //     setDate(date)
-    // }
+  // const handleDateChange = (date) => {
+  //     setDate(date)
+  // }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -44,7 +45,13 @@ function AddService(props) {
     // );
   };
 
+  const updateService = () => {
+    setServiceClicked(!serviceClicked)
+    alert(serviceClicked)
+  }
+
   return (
+    //đg test
     <div className={`bg-modal ${modalState ? "modal-active" : "modal-active"}`}>
       <div id="addpet-section">
         <h1>Thêm dịch vụ</h1>
@@ -53,11 +60,11 @@ function AddService(props) {
             <div className="addpet-title">
               Chọn loại dịch vụ
               <div className="service-container">
-                <ServiceType />
-                <ServiceType />
-                <ServiceType />
-                <ServiceType />
-                <ServiceType />
+                <ServiceType isClicked={serviceClicked} action={updateService}/>
+                <ServiceType isClicked={serviceClicked} action={updateService}/>
+                <ServiceType isClicked={serviceClicked} action={updateService}/>
+                <ServiceType isClicked={serviceClicked} action={updateService}/>
+                <ServiceType isClicked={serviceClicked} action={updateService}/>
               </div>
             </div>
             <br />
@@ -72,56 +79,63 @@ function AddService(props) {
               ></input>
             </div>
             <br />
-            <div className="addpet-title">
-              Thời gian bạn đặt dịch vụ?
-              <div className="addpet-title date-container">
-                <DatePicker
-                selected={date}
-                //   onSelect={handleDateSelect} //when day is clicked
-                // onChange={() => setDate(date)} //only when value has changed
-                showTimeSelect
-                dateFormat="Pp"
-                className="datetime"
-                />
+            <div className="datepicker-container">
+              <div className="addpet-title">
+                Thời gian bạn đặt dịch vụ?
+                <div className="addpet-title date-container">
+                  <DatePicker
+                    selected={date}
+                    //   onSelect={handleDateSelect} //when day is clicked
+                    // onChange={() => setDate(date)} //only when value has changed
+                    showTimeSelect
+                    dateFormat="Pp"
+                    className="datetime"
+                  />
+                </div>
+              </div>
+              <div className="addpet-title">
+                Thời gian muốn kết thúc dịch vụ?
+                <div className="addpet-title date-container">
+                  <DatePicker
+                    selected={date}
+                    //   onSelect={handleDateSelect} //when day is clicked
+                    // onChange={() => setDate(date)} //only when value has changed
+                    showTimeSelect
+                    dateFormat="Pp"
+                    className="datetime"
+                  />
+                </div>
               </div>
             </div>
             <br />
-            <div className="addpet-title">
-              Kích cỡ món ăn:
-              <input
-                type="text"
-                name="foodSize"
-                // value={food.foodSize}
-                // onChange={updateFood}
-                className="addpet-input"
-              ></input>
+            <div className="addservice-numprice">
+              <div className="addpet-title">
+                Số lượng thú bạn muốn gửi?
+                <select
+                  name="foodFlavour"
+                  className="addpet-input multivalue-section"
+                  // value={food.foodFlavour}
+                  // onChange={updateFood}
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3+">3+</option>
+                </select>
+              </div>
+              <div></div>
+              <br />
+              <div className="addpet-title">
+                Giá dịch vụ:
+                <input
+                  type="text"
+                  name="foodPrice"
+                  // value={food.foodPrice}
+                  // onChange={updateFood}
+                  className="addpet-input"
+                ></input>
+              </div>
             </div>
-            <br />
-            <div className="addpet-title">
-              Số lượng thú bạn muốn gửi?
-              <select
-                name="foodFlavour"
-                className="addpet-input multivalue-section"
-                // value={food.foodFlavour}
-                // onChange={updateFood}
-              >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3+">3+</option>
-              </select>
-            </div>
-            <div></div>
-            <br />
-            <div className="addpet-title">
-              Giá món ăn:
-              <input
-                type="text"
-                name="foodPrice"
-                // value={food.foodPrice}
-                // onChange={updateFood}
-                className="addpet-input"
-              ></input>
-            </div>
+
             <br />
           </div>
 

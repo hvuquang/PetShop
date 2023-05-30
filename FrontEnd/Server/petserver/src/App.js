@@ -16,14 +16,14 @@ import AddService from "./pages/AddService/AddService";
 function App() {
   return (
     <div id="App">
-      {/* <SideBar />
+      <SideBar />
       <div id="outlet">
         <Outlet />
-      </div> */}
+      </div>
       {/* <FoodDetail /> */}
       {/* <Uploader /> */}
       {/* <ServiceType/> */}
-      <AddService />
+      {/* <AddService /> */}
     </div>
   );
 }

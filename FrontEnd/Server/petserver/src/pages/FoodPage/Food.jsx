@@ -25,8 +25,10 @@ function Food() {
     }));
   };
 
-  function openModal() {
+  function openModal(event) {
+    event.preventDefault()
     setmodalState(!modalState);
+    
   }
 
   useEffect(() => {
