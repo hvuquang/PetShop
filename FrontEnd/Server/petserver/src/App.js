@@ -10,16 +10,20 @@ import { Outlet } from "react-router-dom";
 import DogDetail from "./pages/DogDetail/DogDetail";
 import FoodDetail from "./pages/FoodDetail/FoodDetail";
 import Uploader from "./components/Uploader/Uploader";
+import ServiceType from "./components/ServiceType/ServiceType";
+import AddService from "./pages/AddService/AddService";
 
 function App() {
   return (
     <div id="App">
-      <SideBar />
+      {/* <SideBar />
       <div id="outlet">
         <Outlet />
-      </div>
+      </div> */}
       {/* <FoodDetail /> */}
       {/* <Uploader /> */}
+      {/* <ServiceType/> */}
+      <AddService />
     </div>
   );
 }

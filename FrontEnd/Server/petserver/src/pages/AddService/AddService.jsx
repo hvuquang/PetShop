@@ -1,16 +1,27 @@
 import React, { useState } from "react";
-import "./AddFood.css";
 import axios from "axios";
 import Uploader from "../../components/Uploader/Uploader";
+import ServiceType from "../../components/ServiceType/ServiceType";
+import "./AddService.css";
 
-function AddFood(props) {
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
+
+function AddService(props) {
   const [img, setImg] = useState();
 
+  const [date, setDate] = useState(new Date());
+  //cài đặt cho DatePicker React
   const modalState = props.toggle;
   const action = props.action;
   let food = props.food;
   let updateFood = props.addfood;
   const showFood = props.showFood;
+
+    // const handleDateChange = (date) => {
+    //     setDate(date)
+    // }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -33,52 +44,46 @@ function AddFood(props) {
     // );
   };
 
-  const onSelectedFile = (e) => {
-    setImg(e.target.files[0]);
-    console.log(e.target.files[0]);
-    console.log(img);
-  };
-
   return (
-    <div className={`bg-modal ${modalState ? "modal-active" : ""}`}>
-      {" "}
+    <div className={`bg-modal ${modalState ? "modal-active" : "modal-active"}`}>
       <div id="addpet-section">
-        <h1>Thêm món ăn</h1>
+        <h1>Thêm dịch vụ</h1>
         <form>
           <div className="food-form-section">
             <div className="addpet-title">
-              Tên món ăn:
-              <input
-                type="text"
-                name="foodName"
-                value={food.foodName}
-                onChange={updateFood}
-                className="addpet-input"
-              ></input>
+              Chọn loại dịch vụ
+              <div className="service-container">
+                <ServiceType />
+                <ServiceType />
+                <ServiceType />
+                <ServiceType />
+                <ServiceType />
+              </div>
             </div>
             <br />
             <div className="addpet-title">
-              Mô tả món ăn:
+              Địa chỉ nhà bạn?
               <input
                 type="text"
                 name="foodDescription"
-                value={food.foodDescription}
-                onChange={updateFood}
+                // value={food.foodDescription}
+                // onChange={updateFood}
                 className="addpet-input"
               ></input>
             </div>
             <br />
             <div className="addpet-title">
-              Ảnh:
-              {/* <input
-                type="file"
-                accept="image/*"
-                name="foodImage"
-                value={food.foodImage}
-                onChange={updateFood}
-                className="addpet-input"
-              ></input> */}
-              <Uploader />
+              Thời gian bạn đặt dịch vụ?
+              <div className="addpet-title date-container">
+                <DatePicker
+                selected={date}
+                //   onSelect={handleDateSelect} //when day is clicked
+                // onChange={() => setDate(date)} //only when value has changed
+                showTimeSelect
+                dateFormat="Pp"
+                className="datetime"
+                />
+              </div>
             </div>
             <br />
             <div className="addpet-title">
@@ -86,23 +91,23 @@ function AddFood(props) {
               <input
                 type="text"
                 name="foodSize"
-                value={food.foodSize}
-                onChange={updateFood}
+                // value={food.foodSize}
+                // onChange={updateFood}
                 className="addpet-input"
               ></input>
             </div>
             <br />
             <div className="addpet-title">
-              Hương vị món ăn:
+              Số lượng thú bạn muốn gửi?
               <select
                 name="foodFlavour"
                 className="addpet-input multivalue-section"
-                value={food.foodFlavour}
-                onChange={updateFood}
+                // value={food.foodFlavour}
+                // onChange={updateFood}
               >
-                <option value="Dâu">Dâu</option>
-                <option value="Vani">Vanila</option>
-                <option value="Sôcôla">Dâu</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3+">3+</option>
               </select>
             </div>
             <div></div>
@@ -112,8 +117,8 @@ function AddFood(props) {
               <input
                 type="text"
                 name="foodPrice"
-                value={food.foodPrice}
-                onChange={updateFood}
+                // value={food.foodPrice}
+                // onChange={updateFood}
                 className="addpet-input"
               ></input>
             </div>
@@ -134,4 +139,4 @@ function AddFood(props) {
   );
 }
 
-export default AddFood;
+export default AddService;
