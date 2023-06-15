@@ -12,10 +12,10 @@ function AddFood(props) {
   let updateFood = props.addfood;
   const showFood = props.showFood;
 
-  let url = ""
-  const apiSizeSmall = "http://localhost:8000/v1/food/addSizeSmall"
-  const apiSizeMedium = "http://localhost:8000/v1/food/addSizeMedium"
-  const apiSizeLarge = "http://localhost:8000/v1/food/addSizeLarge"
+  let url = "";
+  const apiSizeSmall = "http://localhost:8000/v1/food/addSizeSmall";
+  const apiSizeMedium = "http://localhost:8000/v1/food/addSizeMedium";
+  const apiSizeLarge = "http://localhost:8000/v1/food/addSizeLarge";
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -50,32 +50,52 @@ function AddFood(props) {
       <div id="addpet-section">
         <h1>Thêm món ăn</h1>
         <form>
-          <div className="food-form-section">
-            <div className="addpet-title">
-              Tên món ăn:
-              <input
-                type="text"
-                name="foodName"
-                value={food.foodName}
-                onChange={updateFood}
-                className="addpet-input"
-              ></input>
+          <div className="food-form-section food-form2">
+            <div id="food-section-left">
+              <div className="addpet-title">
+                Tên món ăn:
+                <input
+                  type="text"
+                  name="foodName"
+                  value={food.foodName}
+                  onChange={updateFood}
+                  className="addpet-input"
+                ></input>
+              </div>
+              <br />
+              <div className="addpet-title">
+                Mô tả món ăn:
+                {/* <input
+                  name="foodDescription"
+                  value={food.foodDescription}
+                  onChange={updateFood}
+                  className="addpet-input"
+                ></input> */}
+                <textarea
+                  className="addpet-input description"
+                  name="foodDescription"
+                  value={food.foodDescription}
+                  onChange={updateFood}
+                ></textarea>
+              </div>
+              <br />
+              <div className="addpet-title">
+                Kích cỡ món ăn:
+                <input
+                  type="text"
+                  name="foodSize"
+                  value={food.foodSize}
+                  onChange={updateFood}
+                  className="addpet-input"
+                ></input>
+              </div>
+              <br />
+
             </div>
-            <br />
-            <div className="addpet-title">
-              Mô tả món ăn:
-              <input
-                type="text"
-                name="foodDescription"
-                value={food.foodDescription}
-                onChange={updateFood}
-                className="addpet-input"
-              ></input>
-            </div>
-            <br />
-            <div className="addpet-title">
-              Ảnh:
-              {/* <input
+            <div id="food-section-right">
+              <div className="addpet-title">
+                Ảnh:
+                {/* <input
                 type="file"
                 accept="image/*"
                 name="foodImage"
@@ -83,48 +103,37 @@ function AddFood(props) {
                 onChange={updateFood}
                 className="addpet-input"
               ></input> */}
-              <Uploader />
+                <Uploader />
+              </div>
+              <br />
+              <div className="addpet-title">
+                Hương vị món ăn:
+                <select
+                  name="foodFlavour"
+                  className="addpet-input multivalue-section"
+                  value={food.foodFlavour}
+                  onChange={updateFood}
+                >
+                  <option value="Dâu">Dâu</option>
+                  <option value="Vani">Vanila</option>
+                  <option value="Sôcôla">Dâu</option>
+                </select>
+              </div>
+              <div></div>
+              <br />
+              <div className="addpet-title">
+                Giá món ăn:
+                <input
+                  type="text"
+                  name="foodPrice"
+                  value={food.foodPrice}
+                  onChange={updateFood}
+                  className="addpet-input"
+                ></input>
+              </div>
+              <br />
             </div>
-            <br />
-            <div className="addpet-title">
-              Kích cỡ món ăn:
-              <input
-                type="text"
-                name="foodSize"
-                value={food.foodSize}
-                onChange={updateFood}
-                className="addpet-input"
-              ></input>
-            </div>
-            <br />
-            <div className="addpet-title">
-              Hương vị món ăn:
-              <select
-                name="foodFlavour"
-                className="addpet-input multivalue-section"
-                value={food.foodFlavour}
-                onChange={updateFood}
-              >
-                <option value="Dâu">Dâu</option>
-                <option value="Vani">Vanila</option>
-                <option value="Sôcôla">Dâu</option>
-              </select>
-            </div>
-            <div></div>
-            <br />
-            <div className="addpet-title">
-              Giá món ăn:
-              <input
-                type="text"
-                name="foodPrice"
-                value={food.foodPrice}
-                onChange={updateFood}
-                className="addpet-input"
-              ></input>
-            </div>
-            <br />
           </div>
-
           <div className="form-footer">
             <button className="form-add-btn" type="submit" onClick={showFood}>
               Thêm
