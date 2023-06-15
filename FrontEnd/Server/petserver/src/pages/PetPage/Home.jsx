@@ -16,6 +16,8 @@ function Home() {
       setPetList(res.data)
     });
   }, []);
+
+  //open popup
   function openModal(event) {
     event.preventDefault()
     setmodalState(!modalState)

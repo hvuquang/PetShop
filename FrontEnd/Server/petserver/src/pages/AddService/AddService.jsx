@@ -73,7 +73,7 @@ function AddService(props) {
 
   return (
     //đg test
-    <div className={`bg-modal ${modalState ? "modal-active" : "modal-active"}`}>
+    <div className={`bg-modal ${modalState ? "modal-active" : ""}`}>
       <div id="addpet-section">
         <h1>Thêm dịch vụ</h1>
         <form>
