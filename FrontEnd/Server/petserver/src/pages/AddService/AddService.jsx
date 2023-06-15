@@ -17,7 +17,7 @@ function AddService(props) {
   const [serviceClicked3, setServiceClicked3] = useState(false);
   const [serviceClicked4, setServiceClicked4] = useState(false);
   //cài đặt cho DatePicker React
-  const [date, setDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
   //cài đặt popup
   const modalState = props.toggle;
   const action = props.action;
@@ -105,9 +105,9 @@ function AddService(props) {
                 Thời gian bạn đặt dịch vụ?
                 <div className="addpet-title date-container">
                   <DatePicker
-                    selected={date}
+                    selected={startDate}
                     //   onSelect={handleDateSelect} //when day is clicked
-                    // onChange={() => setDate(date)} //only when value has changed
+                    onChange={(date) => setStartDate(date)} //only when value has changed
                     showTimeSelect
                     dateFormat="Pp"
                     className="datetime"
@@ -118,9 +118,9 @@ function AddService(props) {
                 Thời gian muốn kết thúc dịch vụ?
                 <div className="addpet-title date-container">
                   <DatePicker
-                    selected={date}
+                    selected={startDate}
                     //   onSelect={handleDateSelect} //when day is clicked
-                    // onChange={() => setDate(date)} //only when value has changed
+                    onChange={(date) => setStartDate(date)} //only when value has changed
                     showTimeSelect
                     dateFormat="Pp"
                     className="datetime"
