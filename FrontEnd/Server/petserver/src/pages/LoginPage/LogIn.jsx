@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./LogIn.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
   const [account, setAccount] = useState({
@@ -18,8 +19,21 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(`Username: ${account.username} Password: ${account.password}`);
     // Handle login logic here
+    axios
+      .post("http://localhost:8000/v1/account/login", {
+        username: account.username,
+        password: account.password,
+      })
+      .then(
+        (res) => {
+          window.location.href = "http://localhost:3000/petpage"
+          console.log(res)
+        },
+        (error) => {
+          console.log(error)
+        }
+      );
   };
 
   return (
@@ -42,7 +56,8 @@ function Login() {
           placeholder="Password"
         />
         <br />
-        <button type="submit"><Link to="/petpage">GO</Link></button>
+        {/* <button type="submit"><Link to="/petpage">GO</Link></button> */}
+        <button onClick={handleSubmit}>GO</button>
       </form>
     </div>
   );
