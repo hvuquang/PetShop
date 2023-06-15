@@ -12,10 +12,16 @@ function AddService(props) {
   const [img, setImg] = useState();
   //click vào dịch vụ
   const [serviceClicked, setServiceClicked] = useState(false);
-  const [date, setDate] = useState(new Date());
+  const [serviceClicked1, setServiceClicked1] = useState(false);
+  const [serviceClicked2, setServiceClicked2] = useState(false);
+  const [serviceClicked3, setServiceClicked3] = useState(false);
+  const [serviceClicked4, setServiceClicked4] = useState(false);
   //cài đặt cho DatePicker React
+  const [date, setDate] = useState(new Date());
+  //cài đặt popup
   const modalState = props.toggle;
   const action = props.action;
+
   let food = props.food;
   let updateFood = props.addfood;
   const showFood = props.showFood;
@@ -47,7 +53,22 @@ function AddService(props) {
 
   const updateService = () => {
     setServiceClicked(!serviceClicked)
-    alert(serviceClicked)
+  }
+  
+  const updateService1 = () => {
+    setServiceClicked1(!serviceClicked1)
+  }
+
+  const updateService2 = () => {
+    setServiceClicked2(!serviceClicked2)
+  }
+
+  const updateService3 = () => {
+    setServiceClicked3(!serviceClicked3)
+  }
+
+  const updateService4 = () => {
+    setServiceClicked4(!serviceClicked4)
   }
 
   return (
@@ -61,10 +82,10 @@ function AddService(props) {
               Chọn loại dịch vụ
               <div className="service-container">
                 <ServiceType isClicked={serviceClicked} action={updateService}/>
-                <ServiceType isClicked={serviceClicked} action={updateService}/>
-                <ServiceType isClicked={serviceClicked} action={updateService}/>
-                <ServiceType isClicked={serviceClicked} action={updateService}/>
-                <ServiceType isClicked={serviceClicked} action={updateService}/>
+                <ServiceType isClicked={serviceClicked1} action={updateService1}/>
+                <ServiceType isClicked={serviceClicked2} action={updateService2}/>
+                <ServiceType isClicked={serviceClicked3} action={updateService3}/>
+                <ServiceType isClicked={serviceClicked4} action={updateService4}/>
               </div>
             </div>
             <br />
