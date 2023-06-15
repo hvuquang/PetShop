@@ -7,6 +7,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
+    "babel-helper-explode-assignable-expression": "^6.24.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-datepicker": "^4.12.0",

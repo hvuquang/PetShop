@@ -12,25 +12,30 @@ function AddFood(props) {
   let updateFood = props.addfood;
   const showFood = props.showFood;
 
+  let url = ""
+  const apiSizeSmall = "http://localhost:8000/v1/food/addSizeSmall"
+  const apiSizeMedium = "http://localhost:8000/v1/food/addSizeMedium"
+  const apiSizeLarge = "http://localhost:8000/v1/food/addSizeLarge"
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    // const formD = new FormData();
-    // formD.append("name", food.foodName);
-    // formD.append("size", food.foodSize);
-    // formD.append("description", food.foodDescription);
-    // // formD.append("product_type", "Pet");
-    // formD.append("flavour", food.foodFlavour);
-    // // formD.append("gender", "Duc");
-    // formD.append("price", food.foodPrice);
-    // formD.append("image_url", img);
-    // axios.post(url, formD).then(
-    //   (response) => {
-    //     console.log(response);
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   }
-    // );
+    const formD = new FormData();
+    formD.append("name", food.foodName);
+    formD.append("size", food.foodSize);
+    formD.append("description", food.foodDescription);
+    // formD.append("product_type", "Pet");
+    formD.append("flavour", food.foodFlavour);
+    // formD.append("gender", "Duc");
+    formD.append("price", food.foodPrice);
+    formD.append("image_url", img);
+    axios.post(apiSizeSmall, formD).then(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   };
 
   const onSelectedFile = (e) => {
