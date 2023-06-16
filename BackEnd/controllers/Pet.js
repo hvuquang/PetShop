@@ -45,6 +45,64 @@ const petController = {
         } catch (error) {
             res.status(500).json(error)
         }
+    },
+    readPet : async(req , res)=>{
+        try {
+            const _idProduct = req.params._id;
+            const product = await productModel.findById(_idProduct).lean()
+            const _idPet = product.id
+            const pet = await petModel.findById(_idPet).lean()
+            const petData = {
+                Product : product,
+                Pet : {
+                    price : pet.price,
+                    breed : pet.breed,
+                    age : pet.age,
+                    gender : pet.gender
+                }
+            }
+            res.status(200).json(petData);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    },
+    deletePet : async(req,res)=>{
+        try {
+            const id = req.params._id
+            const product = await productModel.findById(id)
+            const idPet = product.id
+            await petModel.findByIdAndDelete(idPet)
+            await productModel.findByIdAndDelete(id)
+            res.status(200).json("Xóa thành công")
+        } catch (error) {
+            res.status(500).json(error)
+        }
+    },
+    updatePet: async (req, res) => {
+        try {
+            const productId = req.params._id;
+            const product = await productModel.findById(productId)
+            const petId = product.id
+            const updatedPetData = req.body.pet;
+            const updatedProductData = req.body.product;
+            const updatedProduct = await productModel.findByIdAndUpdate(
+                productId,
+                updatedProductData,
+                { new: true, runValidators: true }
+            );
+            const updatedPet = await petModel.findByIdAndUpdate(
+                petId,
+                updatedPetData,
+                { new: true, runValidators: true }
+            );
+            if (!updatedProduct || !updatedPet) {
+                return res.status(404).json({ error: "Product hoặc Pet không tồn tại" });
+            }
+
+            res.status(200).json({ updatedProduct, updatedPet });
+        } catch (error) {
+            res.status(500).json(error);
+        }
     }
 }
 
