@@ -84,7 +84,7 @@ const serviceController = {
                 { new: true, runValidators: true }
             );
             if (!updatedProduct || !updatedService) {
-                return res.status(404).json({ error: "Product hoặc Pet không tồn tại" });
+                return res.status(404).json({ error: "Product hoặc Service không tồn tại" });
             }
 
             res.status(200).json({ updatedProduct, updatedService });

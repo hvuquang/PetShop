@@ -10,6 +10,10 @@ const accessorySchema = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId ,
         ref : 'Color' ,
         required : true
+    },
+    price : {
+        type : mongoose.Schema.Types.Number,
+        required : true
     }
 },{timestamps : true})
 
