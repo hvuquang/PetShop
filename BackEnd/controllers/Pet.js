@@ -8,7 +8,13 @@ const petController = {
                 price : req.body.price , 
                 breed : req.body.breed ,
                 age : req.body.age ,
-                gender : req.body.gender
+                gender : req.body.gender,
+                aboutBreed : req.body.aboutBreed,
+                characteristic : req.body.characteristic,
+                origin : req.body.origin,
+                weight : req.body.weight,
+                height : req.body.height,
+                color_id: req.body.color_id
             })
             const newproduct = new productModel({
                 name: req.body.name,
@@ -38,6 +44,14 @@ const petController = {
                     }
                 },
                 {
+                    $lookup: {
+                        from: 'colors',
+                        localField: 'petData.color_id',
+                        foreignField: '_id',
+                        as: 'colorData'
+                    }
+                },
+                {
                     $unwind : '$petData'
                 }
             ])
@@ -51,15 +65,10 @@ const petController = {
             const _idProduct = req.params._id;
             const product = await productModel.findById(_idProduct).lean()
             const _idPet = product.id
-            const pet = await petModel.findById(_idPet).lean()
+            const pet = await petModel.findById(_idPet).populate('color_id').lean()
             const petData = {
                 Product : product,
-                Pet : {
-                    price : pet.price,
-                    breed : pet.breed,
-                    age : pet.age,
-                    gender : pet.gender
-                }
+                Pet : pet
             }
             res.status(200).json(petData);
         } catch (error) {

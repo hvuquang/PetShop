@@ -5,7 +5,11 @@ const serviceController = {
     addService :  async(req , res)=>{
         try {
             const newService = new serviceModel({
-                price : req.body.price
+                price : req.body.price,
+                startTime : req.body.startTime,
+                endTime : req.body.endTime,
+                numPets : req.body.numPets,
+                customerAddress : req.body.customerAddress
             })
             const newProduct = new productModel({
                 name: req.body.name,
