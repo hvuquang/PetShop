@@ -48,7 +48,7 @@ function Food() {
       </div>
       <div id="home-container">
         {foodList.map((foodItem, key) => {
-          return <Card cardtype="food" foodI={foodItem} key={key} />;
+          return <Card cardtype="food" foodI={foodItem} key={key} id={foodItem._id}/>;
         })}
       </div>
       <AddFood

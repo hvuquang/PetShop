@@ -13,12 +13,13 @@ export default function Card(props) {
   let cardDescription = ''
   let food = props.foodI
   let price = 0
+  let id = props.id
 
   function CardType() {
     if (props.cardtype === "pet") {
-      link = "/petpage/petdetail"
+      link = "/petpage/" + id
     } else if (props.cardtype === "food") {
-      link = "/foodpage/fooddetail"
+      link = "/foodpage/" + id
     }
   }
 
@@ -83,7 +84,7 @@ export default function Card(props) {
         <p class="card__price">
           {price} VND
         </p>
-        <Link to={link}>More info</Link> <p>➡️</p>
+        <Link params={{id: id}} to={link}>More info</Link> <p>➡️</p>
       </div>
     </article>
   );

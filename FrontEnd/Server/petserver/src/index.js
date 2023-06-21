@@ -43,12 +43,14 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/petpage/petdetail",
+    path: "/petpage/:id",
     element: <DogDetail />,
+    params: ":id"
   },
   {
-    path: "/foodpage/fooddetail",
+    path: "/foodpage/:id",
     element: <FoodDetail />,
+    params: ":id"
   }
 ]);
 

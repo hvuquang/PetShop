@@ -20,16 +20,24 @@ function AddPet(props) {
     event.preventDefault();
 
     const formD = new FormData();
-    formD.append("name", pet.petBreed)
+    formD.append("height", pet.petHeight)
+    formD.append("weight", pet.petWeight)
+    formD.append("origin", pet.petOrigin)
+    formD.append("characteristic", pet.petCharacter)
     formD.append("breed", pet.petBreed)
+    formD.append("aboutBreed", pet.petDescription)
     formD.append("description", pet.petDescription)
     formD.append("product_type", 'Pet')
     formD.append("price", pet.petPrice)
-    formD.append("gender", 'Duc')
+    formD.append("name", pet.petName)
+    formD.append("gender", pet.petGender)
     formD.append("age", pet.petAge)
+    formD.append("color_id", '648c44711bd8c3e10049c93e')
     formD.append("image_url", img)
     axios.post(url, formD).then(
       (response) => {
+        alert("Thêm thành công")
+        window.location.href = "http://localhost:3000/petpage"
         console.log(response);
       },
       (error) => {
@@ -72,14 +80,27 @@ function AddPet(props) {
                 ></input>
               </div>
               <div className="addpet-title">
-                Màu:
+                Tên:
                 <input
                   type="text"
-                  name="petColor"
-                  value={pet.petColor}
+                  name="petName"
+                  value={pet.petName}
                   onChange={updatePet}
                   className="addpet-input"
                 ></input>
+              </div>
+              <div className="addpet-title">
+                Giới tính:
+                <select
+                  name="petGender"
+                  className="addpet-input multivalue-section"
+                  value={pet.petGender}
+                  onChange={updatePet}
+                  defaultChecked={true}
+                >
+                  <option value="Đực">Đực</option>
+                  <option value="Cái">Cái</option>
+                </select>
               </div>
               <div className="addpet-title">
                 Tuổi thọ:
@@ -158,7 +179,7 @@ function AddPet(props) {
             </div>
           </div>
           <div className="form-footer">
-            <button className="form-add-btn" type="submit" onClick={handleSubmit}>
+            <button className="form-add-btn" onClick={handleSubmit}>
               Thêm giống
             </button>
             <button className="form-exit-btn" onClick={action}>

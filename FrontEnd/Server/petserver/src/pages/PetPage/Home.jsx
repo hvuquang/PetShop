@@ -25,7 +25,7 @@ function Home() {
 
   const [pet, setPet] = useState({
     petBreed: "",
-    petColor: "",
+    petName: "",
     petDescription: "",
     petHeight: "",
     petWeight: "",
@@ -34,6 +34,7 @@ function Home() {
     petCharacter: "",
     petAge: "",
     petPrice: "",
+    petGender: "Đực"
   });
 
   const updatePet = (e) => {
@@ -58,7 +59,7 @@ function Home() {
       </div>
       <div id="home-container">
         {petList.map((petItem, key) => {
-          return <Card petI={petItem} cardtype="pet" key={key} />;
+          return <Card petI={petItem} cardtype="pet" key={key} id={petItem._id}/>;
         })}
       </div>
       <AddPet
