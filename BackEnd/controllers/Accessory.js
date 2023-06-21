@@ -71,7 +71,7 @@ const accessoryController = {
             res.status(200).json(error)
         }
     },
-    readAllFood: async (req, res) => {
+    readAllAccessory: async (req, res) => {
         try {
             const allProduct = await productModel.aggregate([
                 {
@@ -107,7 +107,7 @@ const accessoryController = {
             res.status(500).json(error)
         }
     },
-    countFood: async (req, res) => {
+    countAccessory: async (req, res) => {
         try {
             const countAccessory = await accessoryModel.count()
             res.status(200).json(countAccessory)
@@ -115,7 +115,7 @@ const accessoryController = {
             res.status(500).json(error)
         }
     },
-    readFood: async (req, res) => {
+    readAccessory: async (req, res) => {
         try {
             const _idProduct = req.params._id;
             const product = await productModel.findById(_idProduct).lean()
