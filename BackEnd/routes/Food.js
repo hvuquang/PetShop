@@ -7,6 +7,8 @@ router.post('/addSizeMedium', upload.single('image_url'), foodController.addFood
 router.post('/addSizeLarge', upload.single('image_url'), foodController.addFoodWithSizeLarge)
 router.get('/readAllFood',foodController.readAllFood)
 router.get('/countFood', foodController.countFood)
-
+router.get('/readFood/:_id', foodController.readFood)
+router.delete('/deleteFood/:_id', foodController.deleteFood)
+router.put('/updateFood/:_id', foodController.updateFood)
 
 module.exports = router

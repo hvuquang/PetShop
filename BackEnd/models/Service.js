@@ -12,7 +12,24 @@ const serviceSchema = new mongoose.Schema({
     status : {
         type : String ,
         default : ''
-    }
+    },
+    startTime: {
+        type: String,
+        required : true
+    },
+    endTime: {
+        type: String,
+        required: true
+    },
+    numPets: {
+        type: Number,
+        required: true
+    },
+    customerAddress: {
+        type: String,
+        required: true
+    },
+
 }, { timestamps: true })
 
 const Service = mongoose.model('Service',serviceSchema)

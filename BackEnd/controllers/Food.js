@@ -1,3 +1,4 @@
+const { default: mongoose } = require('mongoose')
 const foodModel = require('../models/Food')
 const productModel = require('../models/Product')
 const path = require('path')
@@ -218,32 +219,13 @@ const foodController = {
     },
     readAllFood : async(req , res) =>{
         try {
-            // const allProduct = await productModel.find()
-            // const allFood = await foodModel.find()
-            // let allFoods = []
-            // allProduct.map((product)=>{
-            //     allFood.map((food)=>{
-            //         if(product.id === food._id){
-            //             let f = {
-            //                 _id: product._id,
-            //                 name: product.name,
-            //                 description: product.description,
-            //                 id: product.id,
-            //                 price: food.price,
-            //                 product_type: product.product_type,
-            //                 image_url: product.image_url
-            //             }
-            //             allFoods.push(f)
-            //         }
-            //     })
-            // })
             const allProduct = await productModel.aggregate([
                 {
                     $lookup: {
-                        from: "foods", // Tên của bảng "food"
-                        localField: "id", // Trường "id" trong bảng "product"
-                        foreignField: "_id", // Trường "id" trong bảng "food"
-                        as: "foodData" // Tên gán cho kết quả nối là "foodData"
+                        from: "foods", 
+                        localField: "id", 
+                        foreignField: "_id", 
+                        as: "foodData" 
                     }
                 } , 
                 {
@@ -277,6 +259,62 @@ const foodController = {
             res.status(200).json(countFood)
         } catch (error) {
             res.status(500).json(error)
+        }
+    },
+    readFood: async (req, res) => {
+        try {
+            const _idProduct = req.params._id;
+            const product = await productModel.findById(_idProduct).lean()
+            const _idPet = product.id
+            const food = await foodModel.findById(_idPet).populate([
+                { path: 'flavour_id', model: 'Flavour' },
+                { path: 'size_id', model: 'Size' }
+            ]).lean()
+            const foodData = {
+                Product: product,
+                Food : food
+            }
+            res.status(200).json(foodData);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    },
+    deleteFood : async(req,res)=>{
+        try {
+            const id = req.params._id
+            const product = await productModel.findById(id)
+            const idFood = product.id
+            await foodModel.findByIdAndDelete(idFood)
+            await productModel.findByIdAndDelete(id)
+            res.status(200).json("Xóa thành công")
+        } catch (error) {
+            res.status(500).json(error)
+        }
+    },
+    updateFood: async (req, res) => {
+        try {
+            const productId = req.params._id;
+            const product = await productModel.findById(productId)
+            const foodId = product.id
+            const updatedFoodData = req.body.food;
+            const updatedProductData = req.body.product;
+            const updatedProduct = await productModel.findByIdAndUpdate(
+                productId,
+                updatedProductData,
+                { new: true, runValidators: true }
+            );
+            const updatedFood = await foodModel.findByIdAndUpdate(
+                foodId,
+                updatedFoodData,
+                { new: true, runValidators: true }
+            );
+            if (!updatedProduct || !updatedFood) {
+                return res.status(404).json({ error: "Product hoặc Food không tồn tại" });
+            }
+
+            res.status(200).json({ updatedProduct, updatedFood });
+        } catch (error) {
+            res.status(500).json(error);
         }
     }
 }

@@ -8,6 +8,8 @@ const sizeRouter = require('./routes/Size')
 const foodRouter = require('./routes/Food')
 const petRouter = require('./routes/Pet')
 const serviceRouter = require('./routes/Service')
+const accessoryRouter = require('./routes/Accessory')
+const colorRouter = require('./routes/Color')
 
 const app = express();
 app.use(cors())
@@ -22,6 +24,8 @@ app.use('/v1/size',sizeRouter)
 app.use('/v1/food',foodRouter)
 app.use('/v1/pet',petRouter)
 app.use('/v1/service',serviceRouter)
+app.use('/v1/accessory', accessoryRouter)
+app.use('/v1/color', colorRouter)
 
 app.listen(8000,()=>{
     console.log('Server running on port 8000');
