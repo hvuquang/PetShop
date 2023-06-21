@@ -24,6 +24,10 @@
     justify-content: space-around;
 }
 
+.food-content-body {
+    overflow-y: scroll;
+}
+
 .food-header-left {
 
 }

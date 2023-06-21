@@ -1,9 +1,28 @@
 import React from "react";
 import "./FoodDetail.css";
 import dogimage from "../../images/golden.png";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function FoodDetail() {
+
+  const {id} = useParams()
+
+
+  const deleteFood = (event) => {
+    event.preventDefault();
+    axios.delete("http://localhost:8000/v1/food/deleteFood/" + id).then(
+      (res) => {
+        alert("Xóa thành công")
+        window.location.href = "http://localhost:3000/foodpage"
+        console.log(res)
+      },
+      (error) => {
+        console.log(error)
+      }
+    );
+  }
+
   return (
     <div className="dog-bg-modal">
       <div className="modal-content">
@@ -101,9 +120,9 @@ export default function FoodDetail() {
           </p>
         </div>
         <div className="content-footer">
-          <button id="btn-modify">Chỉnh sửa</button>
+          {/* <button id="btn-modify">Chỉnh sửa</button> */}
           <button id="btn-save">Lưu</button>
-          <button id="btn-delete">Xóa</button>
+          <button id="btn-delete" onClick={deleteFood}>Xóa</button>
           <button id="btn-close">
             <Link to="/foodpage">Thoát</Link>
           </button>
