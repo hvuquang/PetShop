@@ -5,14 +5,13 @@ import Uploader from "../../components/Uploader/Uploader";
 
 function AddFood(props) {
   const [img, setImg] = useState();
-
   const modalState = props.toggle;
   const action = props.action;
   let food = props.food;
   let updateFood = props.addfood;
-  const showFood = props.showFood;
+  const [size, setSize] = useState("S")
 
-  let url = "";
+  const [url, setURL] = useState("http://localhost:8000/v1/food/addSizeSmall");
   const apiSizeSmall = "http://localhost:8000/v1/food/addSizeSmall";
   const apiSizeMedium = "http://localhost:8000/v1/food/addSizeMedium";
   const apiSizeLarge = "http://localhost:8000/v1/food/addSizeLarge";
@@ -23,13 +22,16 @@ function AddFood(props) {
     formD.append("name", food.foodName);
     formD.append("size", food.foodSize);
     formD.append("description", food.foodDescription);
-    // formD.append("product_type", "Pet");
+    formD.append("product_type", "Food");
     formD.append("flavour", food.foodFlavour);
     // formD.append("gender", "Duc");
     formD.append("price", food.foodPrice);
     formD.append("image_url", img);
-    axios.post(apiSizeSmall, formD).then(
+    alert(url)
+    axios.post(url, formD).then(
       (response) => {
+        alert("Thêm thành công");
+        window.location.href = "http://localhost:3000/foodpage";
         console.log(response);
       },
       (error) => {
@@ -37,6 +39,23 @@ function AddFood(props) {
       }
     );
   };
+
+  const updateSize = (sizeValue) => {
+    if (sizeValue === "S") {
+      alert("S")
+      setURL(apiSizeSmall)
+    }
+    else if (sizeValue === "M") {
+      alert("M")
+      setURL(apiSizeMedium)
+      console.log(url)
+    }
+    else if (sizeValue === "L") {
+      alert("L")
+      setURL(apiSizeLarge)
+      console.log(url)
+    }
+  }
 
   const onSelectedFile = (e) => {
     setImg(e.target.files[0]);
@@ -81,16 +100,19 @@ function AddFood(props) {
               <br />
               <div className="addpet-title">
                 Kích cỡ món ăn:
-                <input
-                  type="text"
+                <select
                   name="foodSize"
+                  className="addpet-input multivalue-section"
                   value={food.foodSize}
                   onChange={updateFood}
-                  className="addpet-input"
-                ></input>
+                  // onChange={(value) => {setSize()}}
+                >
+                  <option value="S" onClick={() => updateSize("S")}>Nhỏ</option>
+                  <option value="M" onClick={() => updateSize("M")}>Vừa</option>
+                  <option value="L" onClick={() => updateSize("L")}>Lớn</option>
+                </select>
               </div>
               <br />
-
             </div>
             <div id="food-section-right">
               <div className="addpet-title">
@@ -103,7 +125,7 @@ function AddFood(props) {
                 onChange={updateFood}
                 className="addpet-input"
               ></input> */}
-                <Uploader />
+                <Uploader value={img} updateImg={setImg} />
               </div>
               <br />
               <div className="addpet-title">
@@ -116,7 +138,7 @@ function AddFood(props) {
                 >
                   <option value="Dâu">Dâu</option>
                   <option value="Vani">Vanila</option>
-                  <option value="Sôcôla">Dâu</option>
+                  <option value="Sôcôla">Chocolate</option>
                 </select>
               </div>
               <div></div>
@@ -135,7 +157,10 @@ function AddFood(props) {
             </div>
           </div>
           <div className="form-footer">
-            <button className="form-add-btn" type="submit" onClick={showFood}>
+            <button
+              className="form-add-btn"
+              onClick={handleSubmit}
+            >
               Thêm
             </button>
             <button className="form-exit-btn" onClick={action}>

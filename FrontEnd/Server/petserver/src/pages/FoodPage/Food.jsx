@@ -33,7 +33,7 @@ function Food() {
 
   useEffect(() => {
     axios.get("http://localhost:8000/v1/food/readAllFood").then((res) => {
-      setFoodList(res.data);
+      setFoodList(res.data)
     });
   });
 
