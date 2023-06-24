@@ -44,3 +44,9 @@
     overflow-y: scroll;
     height: 500px;
 }
+
+#serviceDescription {
+    width: 600px;
+    height: 150px;
+    resize: none;
+}

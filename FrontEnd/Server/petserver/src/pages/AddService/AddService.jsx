@@ -7,25 +7,34 @@ import "./AddService.css";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { MdCalculate } from "react-icons/md";
 
 function AddService(props) {
   const [img, setImg] = useState();
-  const [serviceDescription, setServiceDescription] = useState("")
-  let spaDes = "Spa cho thú cưng"
-  let housesittingDes = "Chăm sóc thú cưng tại nhà riêng"
-  let petwalkingDes = "Đi bộ với thú cưng"
-  let boardingDes = "Nhận chăm sóc thú cưng tại cửa hàng"
-  let daycareDes = "Chăm sóc thú cưng theo giờ tron ngày"
+  const [serviceDescription, setServiceDescription] = useState("");
+  let spaDes = "Spa cho thú cưng";
+  let housesittingDes = "Chăm sóc thú cưng tại nhà riêng";
+  let petwalkingDes = "Đi bộ với thú cưng";
+  let boardingDes = "Nhận chăm sóc thú cưng tại cửa hàng";
+  let daycareDes = "Chăm sóc thú cưng theo giờ trong ngày";
   //click vào dịch vụ
   const [serviceClicked, setServiceClicked] = useState(false);
   const [serviceClicked1, setServiceClicked1] = useState(false);
   const [serviceClicked2, setServiceClicked2] = useState(false);
   const [serviceClicked3, setServiceClicked3] = useState(false);
   const [serviceClicked4, setServiceClicked4] = useState(false);
-  const [price, setPrice] = useState(0)
-  let servicePrice = 300000
+  const [price, setPrice] = useState(0);
+  const [quantity, setQuantity] = useState("1");
+  const [oldQuantityPrice, setOldQuantityPrice] = useState(1)
+  let servicePrice = 300000;
+  let sitting = 1000000;
+  let boarding = 2400000;
+  const [sittingServicePrice, setSittingServicePrice] = useState(0);
+  const [boardServicePrice, setBoardingServicePrice] = useState(0);
   //cài đặt cho DatePicker React
   const [startDate, setStartDate] = useState(new Date());
+  const [startDate1, setStartDate1] = useState(new Date());
+  const [diffDate, setDiffDate] = useState();
   //cài đặt popup
   const modalState = props.toggle;
   const action = props.action;
@@ -58,69 +67,124 @@ function AddService(props) {
     // );
   };
 
-  const updateService = () => {
-    setServiceClicked(!serviceClicked)
-    if (serviceClicked === false) {
-      setPrice(price + servicePrice)
-      setServiceDescription((serviceDescription + "\n" + housesittingDes).trimStart())
+  // tính ra số ngày
+  useEffect(() => {
+    // tính ra milisecond
+
+    let dates = Math.abs(startDate1 - startDate);
+    dates = Math.round(dates / (3600000 * 24));
+    if (dates === 0) dates = 1;
+    setDiffDate(dates);
+  });
+
+  // useEffect(() => {
+  //   setPrice(price)
+  // })
+
+  const calculatePrice = () => {
+    let val = price;
+    if (serviceClicked === true) {
+      if (price >= sittingServicePrice) {
+        val = price - sittingServicePrice;
+      }
+      val = val + sitting * diffDate
+      setPrice(val);
+      setSittingServicePrice(sitting * diffDate);
     }
-    else if (serviceClicked === true) {
-      setPrice(price - servicePrice)
+    if (serviceClicked3 === true) {
+      if (price >= boardServicePrice) {
+        val = price - boardServicePrice;
+      }
+      val = val + boarding * diffDate
+      setPrice(val);
+      setBoardingServicePrice(boarding * diffDate);
+    }
+    if (quantity === "1") {
+      val = val/oldQuantityPrice
+      val = val * 1
+      setPrice(val)
+      setOldQuantityPrice(1)
+    }
+    else if (quantity==="2") {
+      val = val/oldQuantityPrice
+      val = val * 2
+      setPrice(val)
+      setOldQuantityPrice(2)
+    }
+    else if (quantity === "3+") {
+      val /= oldQuantityPrice
+      let temp = 1
+      temp = document.getElementById("quantityGreaterThan3").value
+      val *= temp
+      setPrice(val)
+      setOldQuantityPrice(temp)
+    }
+  };
+
+
+  const updateService = () => {
+    setServiceClicked(!serviceClicked);
+    if (serviceClicked === false) {
+      // setPrice(price + sitting);
+      setServiceDescription(
+        (serviceDescription + "\n" + housesittingDes).trimStart()
+      );
+    } else if (serviceClicked === true) {
+      // setPrice(price - sitting);
       // setServiceDescription(serviceDescription - housesittingDes)
     }
-    console.log(price)
-    console.log(serviceDescription)
-  }
-  
+  };
+
   const updateService1 = () => {
-    setServiceClicked1(!serviceClicked1)
+    setServiceClicked1(!serviceClicked1);
     if (serviceClicked1 === false) {
-      setPrice(price + servicePrice)
-      setServiceDescription((serviceDescription + "\n" + petwalkingDes).trimStart())
+      setPrice(price + servicePrice);
+      setServiceDescription(
+        (serviceDescription + "\n" + petwalkingDes).trimStart()
+      );
+    } else if (serviceClicked1 === true) {
+      setPrice(price - servicePrice);
     }
-    else if (serviceClicked1 === true) {
-      setPrice(price - servicePrice)
-    }
-  }
+  };
 
   const updateService2 = () => {
-    setServiceClicked2(!serviceClicked2)
+    setServiceClicked2(!serviceClicked2);
     if (serviceClicked2 === false) {
-      setPrice(price + servicePrice)
-      setServiceDescription((serviceDescription + "\n" + spaDes).trimStart())
+      setPrice(price + servicePrice);
+      setServiceDescription((serviceDescription + "\n" + spaDes).trimStart());
+    } else if (serviceClicked2 === true) {
+      setPrice(price - servicePrice);
     }
-    else if (serviceClicked2 === true) {
-      setPrice(price - servicePrice)
-    }
-  }
+  };
 
   const updateService3 = () => {
-    setServiceClicked3(!serviceClicked3)
+    setServiceClicked3(!serviceClicked3);
     if (serviceClicked3 === false) {
-      setPrice(price + servicePrice)
-      setServiceDescription((serviceDescription + "\n" + boardingDes).trimStart())
+      // setPrice(price + boarding);
+      setServiceDescription(
+        (serviceDescription + "\n" + boardingDes).trimStart()
+      );
+    } else if (serviceClicked3 === true) {
+      // setPrice(price - boarding);
     }
-    else if (serviceClicked3 === true) {
-      setPrice(price - servicePrice)
-    }
-  }
+  };
 
   const updateService4 = () => {
-    setServiceClicked4(!serviceClicked4)
+    setServiceClicked4(!serviceClicked4);
     if (serviceClicked4 === false) {
-      setPrice(price + servicePrice)
-      setServiceDescription((serviceDescription + "\n" + daycareDes).trimStart())
+      setPrice(price + servicePrice);
+      setServiceDescription(
+        (serviceDescription + "\n" + daycareDes).trimStart()
+      );
+    } else if (serviceClicked4 === true) {
+      setPrice(price - servicePrice);
     }
-    else if (serviceClicked4 === true) {
-      setPrice(price - servicePrice)
-    }
-  }
+  };
 
-  const handlerChangeDes = (e) => 
-  {
-    let description = document.getElementById("serviceDescription").value
-    setServiceDescription(description)
-  }
+  const handlerChangeDes = (e) => {
+    let description = document.getElementById("serviceDescription").value;
+    setServiceDescription(description);
+  };
 
   return (
     //đg test
@@ -132,11 +196,31 @@ function AddService(props) {
             <div className="addpet-title">
               Chọn loại dịch vụ
               <div className="service-container">
-                <ServiceType isClicked={serviceClicked} action={updateService} serviceType="housesitting"/>
-                <ServiceType isClicked={serviceClicked1} action={updateService1} serviceType="petwalking"/>
-                <ServiceType isClicked={serviceClicked2} action={updateService2} serviceType="petspa"/>
-                <ServiceType isClicked={serviceClicked3} action={updateService3} serviceType="boarding"/>
-                <ServiceType isClicked={serviceClicked4} action={updateService4} serviceType="petdaycare"/>
+                <ServiceType
+                  isClicked={serviceClicked}
+                  action={updateService}
+                  serviceType="housesitting"
+                />
+                <ServiceType
+                  isClicked={serviceClicked1}
+                  action={updateService1}
+                  serviceType="petwalking"
+                />
+                <ServiceType
+                  isClicked={serviceClicked2}
+                  action={updateService2}
+                  serviceType="petspa"
+                />
+                <ServiceType
+                  isClicked={serviceClicked3}
+                  action={updateService3}
+                  serviceType="boarding"
+                />
+                <ServiceType
+                  isClicked={serviceClicked4}
+                  action={updateService4}
+                  serviceType="petdaycare"
+                />
               </div>
             </div>
             <br />
@@ -168,12 +252,14 @@ function AddService(props) {
             <br />
             <div className="datepicker-container">
               <div className="addpet-title">
-                Thời gian bạn đặt dịch vụ?
+                Thời gian bạn đặt Sitting, Boarding?
                 <div className="addpet-title date-container">
                   <DatePicker
                     selected={startDate}
                     //   onSelect={handleDateSelect} //when day is clicked
-                    onChange={(date) => setStartDate(date)} //only when value has changed
+                    onChange={(date) => {
+                      setStartDate(date);
+                    }} //only when value has changed
                     showTimeSelect
                     dateFormat="Pp"
                     className="datetime"
@@ -181,12 +267,14 @@ function AddService(props) {
                 </div>
               </div>
               <div className="addpet-title">
-                Thời gian muốn kết thúc dịch vụ?
+                Thời gian muốn kết thúc Sitting, Boarding?
                 <div className="addpet-title date-container">
                   <DatePicker
-                    selected={startDate}
+                    selected={startDate1}
                     //   onSelect={handleDateSelect} //when day is clicked
-                    onChange={(date) => setStartDate(date)} //only when value has changed
+                    onChange={(date) => {
+                      setStartDate1(date);
+                    }} //only when value has changed
                     showTimeSelect
                     dateFormat="Pp"
                     className="datetime"
@@ -199,17 +287,23 @@ function AddService(props) {
               <div className="addpet-title">
                 Số lượng thú bạn muốn gửi?
                 <select
-                  name="foodFlavour"
+                  name="petQuantity"
                   className="addpet-input multivalue-section"
                   // value={food.foodFlavour}
-                  // onChange={updateFood}
+
+                  value={quantity}
                 >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3+">3+</option>
+                  <option value="1" onClick={() => setQuantity("1")}>
+                    1
+                  </option>
+                  <option value="2" onClick={() => setQuantity("2")}>
+                    2
+                  </option>
+                  <option value="3+" onClick={() => setQuantity("3+")}>
+                    3+
+                  </option>
                 </select>
               </div>
-              <div></div>
               <br />
               <div className="addpet-title">
                 Giá dịch vụ:
@@ -219,20 +313,33 @@ function AddService(props) {
                   // value={food.foodPrice}
                   // onChange={updateFood}
                   className="addpet-input"
-                  placeholder={price}
+                  value={price}
                 ></input>
               </div>
             </div>
-
+            {quantity === "3+" ? (
+              <div className="addpet-title">
+                Nhập số lượng?
+                <input className="addpet-input" id="quantityGreaterThan3"/>{" "}
+              </div>
+            ) : (
+              ""
+            )}
             <br />
           </div>
 
           <div className="form-footer">
-            <button className="form-add-btn" type="submit" onClick={showFood}>
-              Thêm
-            </button>
+            <button className="form-add-btn">Thêm</button>
             <button className="form-exit-btn" onClick={action}>
               Thoát
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                calculatePrice();
+              }}
+            >
+              Tính
             </button>
           </div>
         </form>
