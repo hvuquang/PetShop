@@ -39,3 +39,8 @@
 .addservice-numprice {
     display: flex;
 }
+
+#service-form-header {
+    overflow-y: scroll;
+    height: 500px;
+}
