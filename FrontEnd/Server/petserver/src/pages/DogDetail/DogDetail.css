@@ -53,14 +53,13 @@
 .subtitle-information {
     margin: 0px auto;
     width: 500px;
-    height: auto;
     font-size: 18px;
     outline: none;
     border: 2px black solid;
     border-radius: 5px;
     resize: none;
     margin-left: 15px;
-    padding: 10px;
+    padding: 10px 10px 0 10px;
     color: black;
 }
 

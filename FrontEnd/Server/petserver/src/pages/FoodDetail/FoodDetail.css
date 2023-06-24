@@ -36,27 +36,36 @@
     font-size: 20px;
 }
 
-.food-header-right button {
-    width: 100px;
-    height: 30px;
+.food-header-right select {
+    width: 400px;
     margin: 0px 10px;
     background-color: white;
-    border: 3px solid black;
-    border-radius: 10px;
-    font-weight: bolder;
+    border: 2px solid black;
+    border-radius: 3px;
     font-size: 15px;
-}
-
-.food-header-right button:hover {
-    border-color: #FFA200;
-    color: #FFA200;
+    color: black;
 }
 
 .food-detail-title {
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .food-body-description {
-    margin: 0 20px;
+    text-align: center;
+    margin-right: 20px;
+}
+
+#foodDescription {
+    width: 1100px;
+
+}
+
+#foodPrice {
+    overflow: hidden;
+    height: 20px;
+    width: 150px;
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 0px;
 }
