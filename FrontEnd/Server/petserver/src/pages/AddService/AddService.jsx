@@ -48,7 +48,9 @@ function AddService(props) {
     //tên khách hàng
     formD.append("name", document.getElementById("customerName").value);
     formD.append("price", price);
-    formD.append("status", "Hoàn thành");
+    formD.append("status", "pending");
+    // lấy duration làm phone number
+    formD.append("duration", document.getElementById("customerPhone").value);
     formD.append("description", document.getElementById("serviceDescription").value);
     formD.append("product_type", "Service");
     formD.append("startTime", startDate);
@@ -261,6 +263,18 @@ function AddService(props) {
                 // onChange={updateFood}
                 className="addpet-input"
                 id="customerAddress"
+              ></input>
+            </div>
+            <br />
+            <div className="addpet-title">
+              Số điện thoại khách hàng?
+              <input
+                type="text"
+                name="customerPhone"
+                // value={food.foodDescription}
+                // onChange={updateFood}
+                className="addpet-input"
+                id="customerPhone"
               ></input>
             </div>
             <br />
