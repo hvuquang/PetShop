@@ -8,9 +8,18 @@
     padding: 15px;
 }
 
+.service-card--description {
+    width: 50px;
+}
+
+#serviceDescription {
+    width: 300px;
+    height: 100px;
+}
+
 .service-card-container:hover {
-    box-shadow: 0px 0px 3px #FFA200;
-    transform: scale(1.02);
+    box-shadow: 0px 0px 3px black;
+    transform: scale(1);
     transition: all 0.1s;
     z-index: 10;
 }

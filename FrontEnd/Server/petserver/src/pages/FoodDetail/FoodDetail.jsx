@@ -9,7 +9,7 @@ export default function FoodDetail() {
   const [foodName, setFoodName] = useState([]);
   const [foodFlavour, setFoodFlavour] = useState("");
   const [foodDescription, setFoodDescription] = useState([]);
-  const [foodImage, setFoodImage] = useState([]);
+  const [foodImage, setFoodImage] = useState("");
   const [foodPrice, setFoodPrice] = useState([]);
   const [foodSize, setFoodSize] = useState("");
 
@@ -30,7 +30,6 @@ export default function FoodDetail() {
   useEffect(() => {
     axios.get("http://localhost:8000/v1/food/readFood/" + id).then((res) => {
       let foodData = res.data;
-      console.log(res.data);
       setFoodName(foodData.Product.name);
       setFoodImage(foodData.Product.image_url);
       setFoodDescription(foodData.Product.description);
@@ -133,23 +132,29 @@ export default function FoodDetail() {
       <div className="modal-content">
         <div className="food-content-header">
           <div className="food-header-left">
-            <img src={dogimage} alt="golden-dog" />
+            <img src={"http://localhost:8000/" + foodImage} alt="golden-dog" />
           </div>
           <div className="food-header-right">
-            <p className="food-detail-title" id="foodName">
-              Seedo Natural Corn Flushable Cat Litter
-            </p>
-            <span className="food-detail-title">Giá:</span>
-            <br />
+            <div>
+            <p className="food-detail-title">Tên thức ăn: </p>
             <input
-              // type="textarea"
               className="subtitle-information"
-              id="foodPrice"
-              defaultValue={foodPrice}
-              // onChange={(value) => {setPetPrice(value); console.log(value)}}
-            >
-              {/* {petBreed} */}
-            </input>
+              id="foodName"
+              defaultValue={foodName}
+            ></input>
+            </div>
+            <div>
+              <p className="food-detail-title">Giá:</p>
+              <input
+                // type="textarea"
+                className="subtitle-information"
+                id="foodPrice"
+                defaultValue={foodPrice}
+                // onChange={(value) => {setPetPrice(value); console.log(value)}}
+              >
+                {/* {petBreed} */}
+              </input>
+            </div>
 
             <div>
               <p className="food-detail-title">Kích cỡ:</p>
@@ -159,9 +164,15 @@ export default function FoodDetail() {
                 value={foodSize}
                 id="foodSize"
               >
-                <option value="S" onClick={() => setFoodSize("S")}>S</option>
-                <option value="M" onClick={() => setFoodSize("M")}>M</option>
-                <option value="L" onClick={() => setFoodSize("L")}>L</option>
+                <option value="S" onClick={() => setFoodSize("S")}>
+                  S
+                </option>
+                <option value="M" onClick={() => setFoodSize("M")}>
+                  M
+                </option>
+                <option value="L" onClick={() => setFoodSize("L")}>
+                  L
+                </option>
               </select>
             </div>
             <div>
@@ -173,9 +184,15 @@ export default function FoodDetail() {
                 value={foodFlavour}
                 id="foodFlavour"
               >
-                <option value="Dâu" onClick={() => setFoodFlavour("Dâu")}>Dâu</option>
-                <option value="Vani" onClick={() => setFoodFlavour("Vani")}>Vanila</option>
-                <option value="Sôcôla" onClick={() => setFoodFlavour("Sôcôla")}>Chocolate</option>
+                <option value="Dâu" onClick={() => setFoodFlavour("Dâu")}>
+                  Dâu
+                </option>
+                <option value="Vani" onClick={() => setFoodFlavour("Vani")}>
+                  Vanila
+                </option>
+                <option value="Sôcôla" onClick={() => setFoodFlavour("Sôcôla")}>
+                  Chocolate
+                </option>
               </select>
               {/* {renderMultipleFlavour()} */}
             </div>
@@ -196,7 +213,9 @@ export default function FoodDetail() {
         </div>
         <div className="content-footer">
           {/* <button id="btn-modify">Chỉnh sửa</button> */}
-          <button id="btn-save" onClick={updatePet}>Lưu</button>
+          <button id="btn-save" onClick={updatePet}>
+            Lưu
+          </button>
           <button id="btn-delete" onClick={deleteFood}>
             Xóa
           </button>

@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const serviceSchema = new mongoose.Schema({
     duration : {
         type : String , 
-        default : 0
+        // default : 0
+        required : true
     },
     price : {
         type : Number ,
@@ -11,7 +12,8 @@ const serviceSchema = new mongoose.Schema({
     },
     status : {
         type : String ,
-        default : ''
+        // default : ''
+        required : true
     },
     startTime: {
         type: String,
