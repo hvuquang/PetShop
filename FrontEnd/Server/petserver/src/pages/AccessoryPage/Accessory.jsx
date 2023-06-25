@@ -1,22 +1,57 @@
-import React from "react";
+import React , {useEffect , useState} from "react";
 import "./Accessory.css";
 import addicon from "../../images/pet-icon.png";
 import Card from "../../components/Card/Card";
+import axios from "axios";
+import AddAccessory from "../AddAccessoryPage/AddAccessory";
 
 function Accessory() {
+  const [accessoryList, setAccessoryList] = useState([]);
+  const [modalState, setmodalState] = useState(false);
+
+  const [accessory, setAccessory] = useState({
+    accessoryName: '',
+    accessoryDescription: '',
+    accessoryPrice: '',
+    accessoryImage: ''
+  })
+
+  const updateAccessory = e => {
+    const fieldName = e.target.name
+    setAccessory(existingValue => ({
+      ...existingValue,
+      [fieldName]: e.target.value
+    }))
+  }
+
+  function openModal(event) {
+    event.preventDefault()
+    setmodalState(!modalState);
+
+  }
+  useEffect(() => {
+    axios.get("http://localhost:8000/v1/accessory/readAllAccessory").then((res) => {
+      setAccessoryList(res.data)
+    });
+  });
   return (
     <div className="home-section">
       <div className = "home-search">
         <input id="search-input" type="text" placeholder="Tìm kiếm ..." />
-        <div id="home-btn">
+        <div id="home-btn" onClick={openModal}>
           <p>Thêm</p>
           <img id="add-icon" src={addicon} alt="add pet icon" />
         </div>
       </div>
       <div id="home-container">
-          <Card />
-          <Card />
+        {accessoryList.map((accessoryItem, key) => {
+          return <Card cardtype="accessory" accessoryI={accessoryItem} key={key} id={accessoryItem._id} />;
+        })}
       </div>
+      <AddAccessory
+        toggle={modalState}
+        action={openModal}
+      />
     </div>
   );
 }

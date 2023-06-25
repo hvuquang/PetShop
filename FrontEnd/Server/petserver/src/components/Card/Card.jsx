@@ -20,6 +20,8 @@ export default function Card(props) {
       link = "/petpage/" + id
     } else if (props.cardtype === "food") {
       link = "/foodpage/" + id
+    } else if (props.cardtype === "accessory") {
+      link = "/accessorypage/" + id
     }
   }
 
@@ -41,6 +43,11 @@ export default function Card(props) {
       cardTitle = props.petI !== undefined ? props.petI.name : "Golden Treiver"
       price = props.petI !== undefined ? props.petI.petData.price : "8000000"
       shortDescription(props.petI)
+    }
+    else if (props.cardtype === "accessory") {
+      cardTitle = props.accessoryI !== undefined ? props.accessoryI.name : "Chuồng chó vải"
+      price = props.accessoryI !== undefined ? props.accessoryI.accessoryData.price : "8000000"
+      shortDescription(props.accessoryI)
     }
   }
 
