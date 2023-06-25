@@ -91,7 +91,8 @@ export default function Card(props) {
         <p class="card__price">
           {price} VND
         </p>
-        <Link params={{id: id}} to={link}>More info</Link> <p>➡️</p>
+        <Link id="link" params={{id: id}} to={link}>➡️</Link>
+        <button>Thêm</button>
       </div>
     </article>
   );
