@@ -3,6 +3,7 @@ import "./Card.css";
 import { Link } from "react-router-dom";
 import { bool } from "prop-types";
 import dogimg from "../../images/golden.png"
+import axios from "axios"
 
 export default function Card(props) {
   const cardtype = props.cardtype
@@ -14,6 +15,14 @@ export default function Card(props) {
   let food = props.foodI
   let price = 0
   let id = props.id
+
+  const addToCartHandle = (idProduct)=>{
+    axios.put('http://localhost:8000/v1/account/addProduct/64461d96abb7f27194574b94',{
+      product : idProduct
+    })
+    alert('Thêm vào giỏ hàng thành công')
+  }
+
 
   function CardType() {
     if (props.cardtype === "pet") {
@@ -92,7 +101,7 @@ export default function Card(props) {
           {price} VND
         </p>
         <Link id="link" params={{id: id}} to={link}>➡️</Link>
-        <button>Thêm</button>
+        <button onClick={()=>addToCartHandle(id)}>Thêm</button>
       </div>
     </article>
   );
