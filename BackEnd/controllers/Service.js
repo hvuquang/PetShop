@@ -9,7 +9,9 @@ const serviceController = {
                 startTime : req.body.startTime,
                 endTime : req.body.endTime,
                 numPets : req.body.numPets,
-                customerAddress : req.body.customerAddress
+                customerAddress : req.body.customerAddress,
+                status: req.body.status,
+                duration: req.body.duration
             })
             const newProduct = new productModel({
                 name: req.body.name,
