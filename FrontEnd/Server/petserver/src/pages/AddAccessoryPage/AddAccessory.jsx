@@ -80,12 +80,6 @@ function AddAccessory(props) {
               <br />
               <div className="addpet-title">
                 Mô tả phụ kiện:
-                {/* <input
-                  name="foodDescription"
-                  value={food.foodDescription}
-                  onChange={updateFood}
-                  className="addpet-input"
-                ></input> */}
                 <textarea
                   className="addpet-input description"
                   name="accessoryDescription"
