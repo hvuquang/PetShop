@@ -29,11 +29,36 @@ function Accessory() {
     setmodalState(!modalState);
 
   }
-  useEffect(() => {
-    axios.get("http://localhost:8000/v1/accessory/readAllAccessory").then((res) => {
-      setAccessoryList(res.data)
-    });
-  }, [accessoryList]);
+  // useEffect(() => {
+  //   axios.get("http://localhost:8000/v1/accessory/readAllAccessory").then((res) => {
+  //     setAccessoryList(res.data)
+  //   });
+  // }, [accessoryList]);
+
+  useEffect(
+    () => {
+      let val = document.getElementById("search-input").value;
+      // console.log(val)
+      if (val !== "") {
+      // // console.log(1)
+      axios
+        .post("http://localhost:8000/v1/accessory/searchAccessory", {
+          nameAccessory: val,
+        })
+        .then((res) => {
+          // console.log(1)
+          // console.log(res.data)
+          setAccessoryList(res.data);
+        });
+      }
+    else {
+      axios.get("http://localhost:8000/v1/accessory/readAllAccessory").then((res) => {
+        setAccessoryList(res.data)
+      });
+    }
+}, [accessoryList]
+)
+
   return (
     <div className="home-section">
       <div className = "home-search">

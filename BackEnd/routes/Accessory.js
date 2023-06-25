@@ -10,6 +10,6 @@ router.get('/count', accessoryController.countAccessory)
 router.get('/readAccessory/:_id', accessoryController.readAccessory)
 router.delete('/deleteAccessory/:_id', accessoryController.deleteAccessory)
 router.put('/updateAccessory/:_id', accessoryController.updateAccessory)
-router.get('/searchAccessory', accessoryController.searchAccessory)
+router.post('/searchAccessory', accessoryController.searchAccessory)
 
 module.exports = router

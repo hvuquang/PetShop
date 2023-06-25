@@ -11,11 +11,36 @@ function Home() {
   const [petList, setPetList] = useState([]);
   const [img, setImg] = useState();
 
-  useEffect(() => {
-    axios.get("http://localhost:8000/v1/pet/readAllPet").then((res) => {
-      setPetList(res.data)
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios.get("http://localhost:8000/v1/pet/readAllPet").then((res) => {
+  //     setPetList(res.data)
+  //   });
+  // }, []);
+
+  useEffect(
+    () => {
+      let val = document.getElementById("search-input").value;
+      // console.log(val)
+      if (val !== "") {
+      // // console.log(1)
+      axios
+        .post("http://localhost:8000/v1/pet/searchPet", {
+          namePet: val,
+        })
+        .then((res) => {
+          // console.log(1)
+          // console.log(res.data)
+          setPetList(res.data);
+        });
+      }
+    else {
+      axios.get("http://localhost:8000/v1/pet/readAllPet").then((res) => {
+        setPetList(res.data)
+      });
+    }
+}, [petList]
+)
+
 
   //open popup
   function openModal(event) {
