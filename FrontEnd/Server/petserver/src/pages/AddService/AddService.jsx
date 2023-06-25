@@ -38,33 +38,32 @@ function AddService(props) {
   //cài đặt popup
   const modalState = props.toggle;
   const action = props.action;
-  let food = props.food;
-  let updateFood = props.addfood;
-  const showFood = props.showFood;
 
-  // const handleDateChange = (date) => {
-  //     setDate(date)
-  // }
+  //dữ liệu
+  const [customerName, setCustomerName] = useState("customer");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // const formD = new FormData();
-    // formD.append("name", food.foodName);
-    // formD.append("size", food.foodSize);
-    // formD.append("description", food.foodDescription);
-    // // formD.append("product_type", "Pet");
-    // formD.append("flavour", food.foodFlavour);
-    // // formD.append("gender", "Duc");
-    // formD.append("price", food.foodPrice);
-    // formD.append("image_url", img);
-    // axios.post(url, formD).then(
-    //   (response) => {
-    //     console.log(response);
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   }
-    // );
+    const formD = new FormData();
+    //tên khách hàng
+    formD.append("name", document.getElementById("customerName").value);
+    formD.append("price", price);
+    formD.append("status", "Hoàn thành");
+    formD.append("description", document.getElementById("serviceDescription").value);
+    formD.append("product_type", "Service");
+    formD.append("startTime", startDate);
+    formD.append("endTime", startDate1);
+    formD.append("numPets", oldQuantityPrice);
+    formD.append("customerAddress", document.getElementById("customerAddress").value);
+    formD.append("image_url", img);
+    axios.post("http://localhost:8000/v1/service/add", formD).then(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   };
 
   // tính ra số ngày
@@ -129,6 +128,8 @@ function AddService(props) {
     } else if (serviceClicked === true) {
       // setPrice(price - sitting);
       // setServiceDescription(serviceDescription - housesittingDes)
+      // let val = price - sitting * oldQuantityPrice * diffDate
+      // setPrice(val);
     }
   };
 
@@ -136,16 +137,15 @@ function AddService(props) {
     setServiceClicked1(!serviceClicked1);
     if (serviceClicked1 === false) {
       if (oldQuantityPrice !== 1) {
-        let val = price + servicePrice * oldQuantityPrice
-        setPrice(val)
-      }
-      else setPrice(price + servicePrice);
+        let val = price + servicePrice * oldQuantityPrice;
+        setPrice(val);
+      } else setPrice(price + servicePrice);
       setServiceDescription(
         (serviceDescription + "\n" + petwalkingDes).trimStart()
       );
     } else if (serviceClicked1 === true) {
       if (serviceClicked === true || serviceClicked3 === true) {
-        let val = price - oldQuantityPrice * servicePrice
+        let val = price - oldQuantityPrice * servicePrice;
         setPrice(val);
       } else setPrice(price - servicePrice);
     }
@@ -155,14 +155,13 @@ function AddService(props) {
     setServiceClicked2(!serviceClicked2);
     if (serviceClicked2 === false) {
       if (oldQuantityPrice !== 1) {
-        let val = price + servicePrice * oldQuantityPrice
-        setPrice(val)
-      }
-      else setPrice(price + servicePrice);
+        let val = price + servicePrice * oldQuantityPrice;
+        setPrice(val);
+      } else setPrice(price + servicePrice);
       setServiceDescription((serviceDescription + "\n" + spaDes).trimStart());
     } else if (serviceClicked2 === true) {
-            if (serviceClicked === true || serviceClicked3 === true) {
-        let val = price - oldQuantityPrice * servicePrice
+      if (serviceClicked === true || serviceClicked3 === true) {
+        let val = price - oldQuantityPrice * servicePrice;
         setPrice(val);
       } else setPrice(price - servicePrice);
     }
@@ -184,16 +183,15 @@ function AddService(props) {
     setServiceClicked4(!serviceClicked4);
     if (serviceClicked4 === false) {
       if (oldQuantityPrice !== 1) {
-        let val = price + servicePrice * oldQuantityPrice
-        setPrice(val)
-      }
-      else setPrice(price + servicePrice);
+        let val = price + servicePrice * oldQuantityPrice;
+        setPrice(val);
+      } else setPrice(price + servicePrice);
       setServiceDescription(
         (serviceDescription + "\n" + daycareDes).trimStart()
       );
     } else if (serviceClicked4 === true) {
       if (serviceClicked === true || serviceClicked3 === true) {
-        let val = price - oldQuantityPrice * servicePrice
+        let val = price - oldQuantityPrice * servicePrice;
         setPrice(val);
       } else setPrice(price - servicePrice);
     }
@@ -243,14 +241,40 @@ function AddService(props) {
             </div>
             <br />
             <div className="addpet-title">
-              Địa chỉ nhà bạn?
+              Tên khách hàng?
               <input
                 type="text"
-                name="foodDescription"
+                name="customerName"
+                // value={food.foodDescription}
+                // onChange={(value) => {setName(value)}}
+                className="addpet-input"
+                id="customerName"
+              ></input>
+            </div>
+            <br />
+            <div className="addpet-title">
+              Địa chỉ khách hàng?
+              <input
+                type="text"
+                name="customerAddress"
                 // value={food.foodDescription}
                 // onChange={updateFood}
                 className="addpet-input"
+                id="customerAddress"
               ></input>
+            </div>
+            <br />
+            <div className="addpet-title">
+              Ảnh thú cưng:
+              {/* <input
+                type="file"
+                accept="image/*"
+                name="foodImage"
+                value={food.foodImage}
+                onChange={updateFood}
+                className="addpet-input"
+              ></input> */}
+              <Uploader value={img} updateImg={setImg} />
             </div>
             <br />
             <div className="addpet-title">
@@ -350,7 +374,9 @@ function AddService(props) {
           </div>
 
           <div className="form-footer">
-            <button className="form-add-btn">Thêm</button>
+            <button className="form-add-btn" onClick={handleSubmit}>
+              Thêm
+            </button>
             <button className="form-exit-btn" onClick={action}>
               Thoát
             </button>
