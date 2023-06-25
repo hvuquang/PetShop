@@ -7,6 +7,8 @@ import AddService from "../AddService/AddService";
 import axios from "axios";
 function Service() {
   const [modalState, setmodalState] = useState(false);
+  const [serviceList, setServiceList] = useState([]);
+
 
   function openModal(event) {
     event.preventDefault();
@@ -17,6 +19,7 @@ function Service() {
     () => {
       axios.get("http://localhost:8000/v1/service/readAllService").then(
         (res) => {
+          setServiceList(res.data)
           console.log(res.data);
         },
         (err) => {
@@ -37,9 +40,11 @@ function Service() {
         <AddService toggle={modalState} action={openModal} />
       </div>
       <div id="home-container">
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
+        {
+          serviceList.map((serviceItem) => {
+            return <ServiceCard serviceI={serviceItem}/>
+          })
+        }
       </div>
     </div>
   );
