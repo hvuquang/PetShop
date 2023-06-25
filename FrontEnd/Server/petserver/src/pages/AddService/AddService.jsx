@@ -25,10 +25,10 @@ function AddService(props) {
   const [serviceClicked4, setServiceClicked4] = useState(false);
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState("1");
-  const [oldQuantityPrice, setOldQuantityPrice] = useState(1)
-  let servicePrice = 300000;
+  const [oldQuantityPrice, setOldQuantityPrice] = useState(1);
+  let servicePrice = 250000;
   let sitting = 1000000;
-  let boarding = 2400000;
+  let boarding = 2200000;
   const [sittingServicePrice, setSittingServicePrice] = useState(0);
   const [boardServicePrice, setBoardingServicePrice] = useState(0);
   //cài đặt cho DatePicker React
@@ -87,7 +87,7 @@ function AddService(props) {
       if (price >= sittingServicePrice) {
         val = price - sittingServicePrice;
       }
-      val = val + sitting * diffDate
+      val = val + sitting * diffDate;
       setPrice(val);
       setSittingServicePrice(sitting * diffDate);
     }
@@ -95,32 +95,29 @@ function AddService(props) {
       if (price >= boardServicePrice) {
         val = price - boardServicePrice;
       }
-      val = val + boarding * diffDate
+      val = val + boarding * diffDate;
       setPrice(val);
       setBoardingServicePrice(boarding * diffDate);
     }
     if (quantity === "1") {
-      val = val/oldQuantityPrice
-      val = val * 1
-      setPrice(val)
-      setOldQuantityPrice(1)
-    }
-    else if (quantity==="2") {
-      val = val/oldQuantityPrice
-      val = val * 2
-      setPrice(val)
-      setOldQuantityPrice(2)
-    }
-    else if (quantity === "3+") {
-      val /= oldQuantityPrice
-      let temp = 1
-      temp = document.getElementById("quantityGreaterThan3").value
-      val *= temp
-      setPrice(val)
-      setOldQuantityPrice(temp)
+      val = val / oldQuantityPrice;
+      val = val * 1;
+      setPrice(val);
+      setOldQuantityPrice(1);
+    } else if (quantity === "2") {
+      val = val / oldQuantityPrice;
+      val = val * 2;
+      setPrice(val);
+      setOldQuantityPrice(2);
+    } else if (quantity === "3+") {
+      val /= oldQuantityPrice;
+      let temp = 1;
+      temp = document.getElementById("quantityGreaterThan3").value;
+      val *= temp;
+      setPrice(val);
+      setOldQuantityPrice(temp);
     }
   };
-
 
   const updateService = () => {
     setServiceClicked(!serviceClicked);
@@ -138,22 +135,36 @@ function AddService(props) {
   const updateService1 = () => {
     setServiceClicked1(!serviceClicked1);
     if (serviceClicked1 === false) {
-      setPrice(price + servicePrice);
+      if (oldQuantityPrice !== 1) {
+        let val = price + servicePrice * oldQuantityPrice
+        setPrice(val)
+      }
+      else setPrice(price + servicePrice);
       setServiceDescription(
         (serviceDescription + "\n" + petwalkingDes).trimStart()
       );
     } else if (serviceClicked1 === true) {
-      setPrice(price - servicePrice);
+      if (serviceClicked === true || serviceClicked3 === true) {
+        let val = price - oldQuantityPrice * servicePrice
+        setPrice(val);
+      } else setPrice(price - servicePrice);
     }
   };
 
   const updateService2 = () => {
     setServiceClicked2(!serviceClicked2);
     if (serviceClicked2 === false) {
-      setPrice(price + servicePrice);
+      if (oldQuantityPrice !== 1) {
+        let val = price + servicePrice * oldQuantityPrice
+        setPrice(val)
+      }
+      else setPrice(price + servicePrice);
       setServiceDescription((serviceDescription + "\n" + spaDes).trimStart());
     } else if (serviceClicked2 === true) {
-      setPrice(price - servicePrice);
+            if (serviceClicked === true || serviceClicked3 === true) {
+        let val = price - oldQuantityPrice * servicePrice
+        setPrice(val);
+      } else setPrice(price - servicePrice);
     }
   };
 
@@ -172,12 +183,19 @@ function AddService(props) {
   const updateService4 = () => {
     setServiceClicked4(!serviceClicked4);
     if (serviceClicked4 === false) {
-      setPrice(price + servicePrice);
+      if (oldQuantityPrice !== 1) {
+        let val = price + servicePrice * oldQuantityPrice
+        setPrice(val)
+      }
+      else setPrice(price + servicePrice);
       setServiceDescription(
         (serviceDescription + "\n" + daycareDes).trimStart()
       );
     } else if (serviceClicked4 === true) {
-      setPrice(price - servicePrice);
+      if (serviceClicked === true || serviceClicked3 === true) {
+        let val = price - oldQuantityPrice * servicePrice
+        setPrice(val);
+      } else setPrice(price - servicePrice);
     }
   };
 
@@ -320,7 +338,10 @@ function AddService(props) {
             {quantity === "3+" ? (
               <div className="addpet-title">
                 Nhập số lượng?
-                <input className="addpet-input" id="quantityGreaterThan3"/>{" "}
+                <input
+                  className="addpet-input"
+                  id="quantityGreaterThan3"
+                />{" "}
               </div>
             ) : (
               ""
