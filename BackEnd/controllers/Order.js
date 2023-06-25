@@ -27,6 +27,21 @@ const orderController = {
         } catch (error) {
             res.status(500).json(error)
         }
+    },
+    revenueCalculation : async(req,res)=>{
+
+        try {
+            const date = req.body.date;
+
+            const Order = await orderDetailModel
+                .find({ date: date })
+                .populate('order_id')
+                .populate('product_id');
+
+            res.status(200).json(Order);
+        } catch (error) {
+            res.status(500).json(error);
+        }
     }
 }
 
