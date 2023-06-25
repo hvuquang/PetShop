@@ -16,6 +16,7 @@ import AccessoryDetail from "./pages/AccessoryDetail/AccessoryDetail"
 import AddService from "./pages/AddService/AddService";
 import ServiceDetail from "./pages/ServiceDetail/ServiceDetail";
 import CartPage from "./pages/CartPage/CartPage"
+import ReportPage from "./pages/ReportPage/ReportPage";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/cartpage",
         element: <CartPage />,
+      },
+      {
+        path: "/reportpage",
+        element: <ReportPage />,
       },
     ],
   },

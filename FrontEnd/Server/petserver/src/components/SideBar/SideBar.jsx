@@ -6,6 +6,7 @@ import paw from "../../images/pawprint.png";
 import food from "../../images/pet-food.png";
 import phone from "../../images/phone-call.png";
 import cart from "../../images/cartt.png"
+import revenue from "../../images/analytics.png"
 import { Link, Outlet } from "react-router-dom";
 
 function SideBar() {
@@ -35,6 +36,10 @@ function SideBar() {
           <div className="sb-item">
             <img src={cart} alt="" />
             <Link to={"/cartpage"}>Giỏ hàng</Link>
+          </div>
+          <div className="sb-item">
+            <img src={revenue} alt="" />
+            <Link to={"/reportpage"}>Doanh thu</Link>
           </div>
         </div>
       </div>
