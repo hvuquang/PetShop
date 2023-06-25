@@ -7,5 +7,6 @@ router.get('/readAllService',serviceController.readAllService)
 router.get('/readService/:_id', serviceController.readService)
 router.delete('/deleteService/:_id', serviceController.deleteService)
 router.put('/updateService/:_id', serviceController.updateService)
+router.get('/countService', serviceController.countService)
 
 module.exports = router
