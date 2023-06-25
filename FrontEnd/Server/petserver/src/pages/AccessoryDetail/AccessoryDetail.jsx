@@ -12,6 +12,21 @@ export default function AccessoryDetail() {
     const [accessoryPrice, setAccessoryPrice] = useState([]);
     const [accessorySize, setAccessorySize] = useState("");
 
+
+    const deleteAccessory = (event) => {
+        event.preventDefault();
+        axios.delete("http://localhost:8000/v1/accessory/deleteAccessory/" + id).then(
+            (res) => {
+                alert("Xóa thành công");
+                window.location.href = "http://localhost:3000/accessorypage";
+                console.log(res);
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
+    };
+
     useEffect(() => {
         axios.get("http://localhost:8000/v1/accessory/readAccessory/" + id).then((res) => {
             let accessoryData = res.data;
@@ -56,7 +71,21 @@ export default function AccessoryDetail() {
                                 name="foodSize"
                                 className="addpet-input multivalue-section food-detail-information"
                                 value={accessorySize}
-                                id="foodSize"
+                                id="accessorySize"
+                            >
+                                <option value="S" onClick={() => setAccessorySize("S")}>S</option>
+                                <option value="M" onClick={() => setAccessorySize("M")}>M</option>
+                                <option value="L" onClick={() => setAccessorySize("L")}>L</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <p className="food-detail-title">Kích cỡ:</p>
+                            <select
+                                name="foodSize"
+                                className="addpet-input multivalue-section food-detail-information"
+                                value={accessorySize}
+                                id="accessorySize"
                             >
                                 <option value="S" onClick={() => setAccessorySize("S")}>S</option>
                                 <option value="M" onClick={() => setAccessorySize("M")}>M</option>
@@ -82,7 +111,7 @@ export default function AccessoryDetail() {
                 <div className="content-footer">
                     {/* <button id="btn-modify">Chỉnh sửa</button> */}
                     <button id="btn-save" >Lưu</button>
-                    <button id="btn-delete">
+                    <button id="btn-delete" onClick={deleteAccessory}>
                         Xóa
                     </button>
                     <button id="btn-close">
