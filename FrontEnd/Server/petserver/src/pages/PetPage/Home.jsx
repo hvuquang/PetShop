@@ -10,6 +10,7 @@ function Home() {
   const [modalState, setmodalState] = useState(false);
   const [petList, setPetList] = useState([]);
   const [img, setImg] = useState();
+  const [countPet , setCountPet] = useState()
 
   // useEffect(() => {
   //   axios.get("http://localhost:8000/v1/pet/readAllPet").then((res) => {
@@ -38,6 +39,9 @@ function Home() {
         setPetList(res.data)
       });
     }
+    axios.get('http://localhost:8000/v1/pet/countPet').then(res=>{
+      setCountPet(res.data)
+    })
 }, [petList]
 )
 
@@ -82,6 +86,7 @@ function Home() {
           <img id="add-icon" src={addicon} alt="add pet icon" />
         </div>
       </div>
+      <div className="pet-amount">Số lượng : {countPet}</div>
       <div id="home-container">
         {petList.map((petItem, key) => {
           return <Card petI={petItem} cardtype="pet" key={key} id={petItem._id}/>;

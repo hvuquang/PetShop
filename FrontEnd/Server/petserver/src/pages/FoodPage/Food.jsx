@@ -8,6 +8,7 @@ import AddFood from "../AddFoodPage/AddFood";
 function Food() {
   const [foodList, setFoodList] = useState([]);
   const [modalState, setmodalState] = useState(false);
+  const [countFood , setCountFood] = useState()
   const [food, setFood] = useState({
     foodName: "",
     foodSize: "",
@@ -57,6 +58,9 @@ function Food() {
         setFoodList(res.data)
       });
     }
+    axios.get('http://localhost:8000/v1/food/countFood').then(res => {
+      setCountFood(res.data)
+    })
 }, [foodList]
 )
 
@@ -69,6 +73,7 @@ function Food() {
           <img id="add-icon" src={addicon} alt="add pet icon" />
         </div>
       </div>
+      <div className="pet-amount">Số lượng : {countFood}</div>
       <div id="home-container">
         {foodList.map((foodItem, key) => {
           return (

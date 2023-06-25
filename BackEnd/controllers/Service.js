@@ -97,6 +97,15 @@ const serviceController = {
         } catch (error) {
             res.status(500).json(error);
         }
+    },
+    countService: async (req, res) => {
+        try {
+            const countService = await productModel.find({ product_type: "Service" }).count()
+            res.status(200).json(countService)
+        } catch (error) {
+            res.status(500).json(error)
+        }
+
     }
 }
 

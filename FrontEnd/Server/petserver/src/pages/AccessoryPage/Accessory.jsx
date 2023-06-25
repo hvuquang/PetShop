@@ -8,6 +8,7 @@ import AddAccessory from "../AddAccessoryPage/AddAccessory";
 function Accessory() {
   const [accessoryList, setAccessoryList] = useState([]);
   const [modalState, setmodalState] = useState(false);
+  const [countAccessory, setCountAccessory] = useState()
 
   const [accessory, setAccessory] = useState({
     accessoryName: '',
@@ -56,6 +57,9 @@ function Accessory() {
         setAccessoryList(res.data)
       });
     }
+      axios.get('http://localhost:8000/v1/accessory/count').then(res => {
+        setCountAccessory(res.data)
+      })
 }, [accessoryList]
 )
 
@@ -68,6 +72,7 @@ function Accessory() {
           <img id="add-icon" src={addicon} alt="add pet icon" />
         </div>
       </div>
+      <div className="pet-amount">Số lượng : {countAccessory}</div>
       <div id="home-container">
         {accessoryList.map((accessoryItem, key) => {
           return <Card cardtype="accessory" accessoryI={accessoryItem} key={key} id={accessoryItem._id} />;
