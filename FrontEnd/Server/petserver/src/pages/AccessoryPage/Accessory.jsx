@@ -33,7 +33,7 @@ function Accessory() {
     axios.get("http://localhost:8000/v1/accessory/readAllAccessory").then((res) => {
       setAccessoryList(res.data)
     });
-  });
+  }, [accessoryList]);
   return (
     <div className="home-section">
       <div className = "home-search">
