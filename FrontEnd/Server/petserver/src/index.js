@@ -13,6 +13,8 @@ import DogDetail from "./pages/DogDetail/DogDetail";
 import LogIn from "./pages/LoginPage/LogIn";
 import FoodDetail from "./pages/FoodDetail/FoodDetail";
 import AccessoryDetail from "./pages/AccessoryDetail/AccessoryDetail"
+import AddService from "./pages/AddService/AddService";
+import ServiceDetail from "./pages/ServiceDetail/ServiceDetail";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +58,11 @@ const router = createBrowserRouter([
   {
     path: "/accessorypage/:id",
     element: <AccessoryDetail />,
+    params: ":id"
+  },
+  {
+    path: "/detailservice/:id",
+    element: <ServiceDetail />,
     params: ":id"
   }
 ]);
