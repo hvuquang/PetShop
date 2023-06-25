@@ -7,6 +7,7 @@ function CartPage() {
     const productList = []
     const [petList , setPetList] = useState()
     const [foodList , setFoodList] = useState()
+    const [accessoryList, setAccessoryList] = useState()
     const product_ids = []
     var subtotal = 0;
 
@@ -28,6 +29,9 @@ function CartPage() {
         axios.get('http://localhost:8000/v1/account/cartContainFood/64461d96abb7f27194574b94').then(res => {
             setFoodList(res.data);
         })
+        axios.get('http://localhost:8000/v1/account/cartContainAccessory/64461d96abb7f27194574b94').then(res => {
+            setAccessoryList(res.data);
+        })
     },[])
 
     petList?.map(pet=>{
@@ -38,6 +42,11 @@ function CartPage() {
     foodList?.map(food => {
         productList.push({ id: food._id, name: food.name, des: food.description, image: food.image_url, price: food.foodData.price })
         product_ids.push(food._id)
+    })
+
+    accessoryList?.map(accessory => {
+        productList.push({ id: accessory._id, name: accessory.name, des: accessory.description, image: accessory.image_url, price: accessory.accessoryData.price })
+        product_ids.push(accessory._id)
     })
 
     productList.map(product =>{

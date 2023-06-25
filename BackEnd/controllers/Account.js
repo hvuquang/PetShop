@@ -164,6 +164,50 @@ const accountController = {
             res.status(500).json(error)
         }
     },
+    cartContainAccessory: async (req, res) => {
+        try {
+            const id = req.params._id
+            const account = await accountModel.findById(id).populate('cart_id')
+            let products = account.cart_id.product_id
+            const detailedProduct = await productModel.aggregate([
+                {
+                    $match: {
+                        _id: { $in: products }
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "accessories",
+                        localField: "id",
+                        foreignField: "_id",
+                        as: "accessoryData"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "colors",
+                        localField: "accessoryData.color_id",
+                        foreignField: "_id",
+                        as: "colorData"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "sizes",
+                        localField: "accessoryData.size_id",
+                        foreignField: "_id",
+                        as: "sizeData"
+                    }
+                },
+                {
+                    $unwind: "$accessoryData"
+                }
+            ])
+            res.status(200).json(detailedProduct)
+        } catch (error) {
+            res.status(500).json(error)
+        }
+    },
     deleteProductInCart : async(req,res)=>{
         try {
             const id = req.params._id;
