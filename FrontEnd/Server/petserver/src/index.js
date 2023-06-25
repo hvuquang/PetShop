@@ -13,6 +13,7 @@ import DogDetail from "./pages/DogDetail/DogDetail";
 import LogIn from "./pages/LoginPage/LogIn";
 import FoodDetail from "./pages/FoodDetail/FoodDetail";
 import AccessoryDetail from "./pages/AccessoryDetail/AccessoryDetail"
+import CartPage from "./pages/CartPage/CartPage";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/accessorypage",
         element: <Accessory />,
+      },
+      {
+        path: "/cartpage",
+        element: <CartPage />,
       },
     ],
   },

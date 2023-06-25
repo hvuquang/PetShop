@@ -163,6 +163,39 @@ const accountController = {
         } catch (error) {
             res.status(500).json(error)
         }
+    },
+    deleteProductInCart : async(req,res)=>{
+        try {
+            const id = req.params._id;
+            const deleteProduct = req.body.product_id;
+            const account = await accountModel.findById(id).populate('cart_id');
+
+            const updatedProduct = account.cart_id.product_id.filter(
+                product => product.toString() !== deleteProduct
+            );
+
+            account.cart_id.product_id = updatedProduct;
+
+            await account.cart_id.save();
+
+            res.status(200).json('Xóa sản phẩm khỏi giỏ hàng thành công');
+        } catch (error) {
+            res.status(500).json({ error: 'Đã xảy ra lỗi khi xóa sản phẩm khỏi giỏ hàng' });
+        }
+    },
+    deleteAllProductsInCart: async (req, res) => {
+        try {
+            const id = req.params._id;
+            const account = await accountModel.findById(id).populate('cart_id');
+
+            account.cart_id.product_id = [];
+
+            await account.cart_id.save();
+
+            res.status(200).json('Xóa tất cả sản phẩm khỏi giỏ hàng thành công');
+        } catch (error) {
+            res.status(500).json({ error: 'Đã xảy ra lỗi khi xóa sản phẩm khỏi giỏ hàng' });
+        }
     }
 }
 
