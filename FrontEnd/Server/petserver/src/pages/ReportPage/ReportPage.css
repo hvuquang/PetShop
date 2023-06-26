@@ -13,6 +13,7 @@
     transition: transform 0.3s ease;
     margin: 20px 30px 20px 30px ;
     flex-direction: row;
+
 }
 
 .card-report-item:hover {

@@ -100,8 +100,9 @@ export default function Card(props) {
         <p class="card__price">
           {price} VND
         </p>
-        <Link id="link" params={{id: id}} to={link}>➡️</Link>
-        <button onClick={()=>addToCartHandle(id)}>Thêm</button>
+        <Link id="link" params={{id: id}} to={link}>Chi tiết ➡️</Link>
+        <br />
+        <button id="addCart" onClick={()=>addToCartHandle(id)}>Thêm</button>
       </div>
     </article>
   );

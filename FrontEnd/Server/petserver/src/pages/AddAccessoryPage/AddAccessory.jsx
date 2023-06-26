@@ -117,19 +117,6 @@ function AddAccessory(props) {
               </div>
               <br />
               <div className="addpet-title">
-                Màu phụ kiện:
-                <select
-                  name="accessoryColor"
-                  id="accessoryColor"
-                  className="addpet-input multivalue-section"
-                >
-                  <option value="Dâu">Dâu</option>
-                  <option value="Vani">Vanila</option>
-                  <option value="Sôcôla">Chocolate</option>
-                </select>
-              </div>
-              <br />
-              <div className="addpet-title">
                 Giá phụ kiện:
                 <input
                   type="text"

@@ -75,4 +75,10 @@ body {
 #link {
 	font-style: normal;
 	text-decoration: none;
+	color: tomato;
+}
+
+#addCart {
+	width: 100px;
+	height: 25px;
 }

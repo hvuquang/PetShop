@@ -9,7 +9,7 @@ function ReportPage() {
     var revenue = 0
     useEffect(()=>{
         axios.get('http://localhost:8000/v1/order/getAllOrder').then(res=>{setOrderList(res.data)})
-    },[])
+    },[orderList])
 
     orderList.map(order=>revenue += order.subtotal)
   return (
@@ -30,7 +30,8 @@ function ReportPage() {
                 ));
                 return (
                     <div className="card-report-item" key={key}>
-                        <div className="invoice-code">{order.order_id._id}</div>
+                        {/* {console.log(products)} */}
+                        <div className="invoice-code">Mã: {order.order_id._id}</div>
                         <div className="product-name">{products}</div>
                         <div className="total-amount">{order.subtotal} VNĐ</div>
                         <div className="payment-date">{order.order_id.date}</div>

@@ -132,8 +132,8 @@ function ServiceCard(props) {
         <button id="service-container-accept" onClick={updateStatus}>
           Hoàn thành
         </button>
-        <button id="service-container-accept">
-          <Link className="linkText" to={"/detailservice/" + _id}> Chi tiết</Link>
+        <button id="service-container-accept" style={{backgroundColor: '#FEBC37'}}>
+          <Link style={{textDecoration:'none'}} className="linkText" to={"/detailservice/" + _id}> Chi tiết</Link>
         </button>
         <button id="service-container-decline" onClick={deleteService}>
           Từ chối
