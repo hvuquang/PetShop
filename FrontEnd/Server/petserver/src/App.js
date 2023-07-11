@@ -20,10 +20,6 @@ function App() {
       <div id="outlet">
         <Outlet />
       </div>
-      {/* <FoodDetail /> */}
-      {/* <Uploader /> */}
-      {/* <ServiceType/> */}
-      {/* <AddService /> */}
     </div>
   );
 }

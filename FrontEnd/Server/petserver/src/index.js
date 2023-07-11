@@ -12,6 +12,15 @@ import Accessory from "./pages/AccessoryPage/Accessory";
 import DogDetail from "./pages/DogDetail/DogDetail";
 import LogIn from "./pages/LoginPage/LogIn";
 import FoodDetail from "./pages/FoodDetail/FoodDetail";
+<<<<<<< Updated upstream
+=======
+import AccessoryDetail from "./pages/AccessoryDetail/AccessoryDetail"
+import AddService from "./pages/AddService/AddService";
+import ServiceDetail from "./pages/ServiceDetail/ServiceDetail";
+import CartPage from "./pages/CartPage/CartPage"
+import ReportPage from "./pages/ReportPage/ReportPage";
+import Register from "./pages/RegisterPage/Register";
+>>>>>>> Stashed changes
 
 const router = createBrowserRouter([
   {
@@ -19,6 +28,12 @@ const router = createBrowserRouter([
     element: <LogIn />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: "/registerAccount",
+    element: <Register />,
+    errorElement: <ErrorPage />,
+  }
+  ,
   {
     path: "/",
     element: <App />,

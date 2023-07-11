@@ -27,38 +27,41 @@ function Login() {
       })
       .then(
         (res) => {
-          window.location.href = "http://localhost:3000/petpage"
-          console.log(res)
+          window.location.href = "http://localhost:3000/petpage";
+          console.log(res);
         },
         (error) => {
-          console.log(error)
+          console.log(error);
         }
       );
   };
 
   return (
-    <div id="login-section">
-      <h1>LOGIN</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="username"
-          value={account.username}
-          onChange={updateAccount}
-          placeholder="Username"
-        />
-        <br />
-        <input
-          type="password"
-          name="password"
-          value={account.password}
-          onChange={updateAccount}
-          placeholder="Password"
-        />
-        <br />
-        {/* <button type="submit"><Link to="/petpage">GO</Link></button> */}
-        <button onClick={handleSubmit}>GO</button>
-      </form>
+    <div id="background">
+      <div id="login-section">
+        <h1>LOGIN</h1>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="username"
+            value={account.username}
+            onChange={updateAccount}
+            placeholder="Username"
+          />
+          <br />
+          <input
+            type="password"
+            name="password"
+            value={account.password}
+            onChange={updateAccount}
+            placeholder="Password"
+          />
+          <br />
+          {/* <button type="submit"><Link to="/petpage">GO</Link></button> */}
+          <Link to={"/registerAccount"}>Don't have an account? Register here!</Link>
+          <button onClick={handleSubmit}>GO</button>
+        </form>
+      </div>
     </div>
   );
 }
