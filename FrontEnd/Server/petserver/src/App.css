@@ -12,5 +12,5 @@ body, html, #root {
 #App {
   display: flex;
   height: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
 }

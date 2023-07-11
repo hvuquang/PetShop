@@ -72,3 +72,13 @@ body {
 	opacity: 1;
 	transition-delay: 0.75s;
 }
+#link {
+	font-style: normal;
+	text-decoration: none;
+	color: tomato;
+}
+
+#addCart {
+	width: 100px;
+	height: 25px;
+}

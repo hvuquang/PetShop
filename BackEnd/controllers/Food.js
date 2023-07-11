@@ -255,7 +255,7 @@ const foodController = {
     },
     countFood : async(req , res) =>{
         try {
-            const countFood = await foodModel.count()
+            const countFood = await productModel.find({product_type : "Food"}).count()
             res.status(200).json(countFood)
         } catch (error) {
             res.status(500).json(error)
@@ -315,6 +315,53 @@ const foodController = {
             res.status(200).json({ updatedProduct, updatedFood });
         } catch (error) {
             res.status(500).json(error);
+        }
+    },
+    searchFood: async (req, res) => {
+        const nameFood = req.body.nameFood
+        try {
+            const regexPattern = new RegExp(nameFood, 'i')
+            const pets = await productModel.find({ name: { $regex: regexPattern }, product_type: 'Food' })
+            const foodIds = pets.map(food => food._id)
+            const infoFoods = await productModel.aggregate([
+                {
+                    $match: {
+                        _id: {
+                            $in: foodIds
+                        }
+                    }
+                },
+                {
+                    $lookup: {
+                        from: 'foods',
+                        localField: 'id',
+                        foreignField: '_id',
+                        as: 'foodData'
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "flavours",
+                        localField: "foodData.flavour_id",
+                        foreignField: "_id",
+                        as: "flavourData"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "sizes",
+                        localField: "foodData.size_id",
+                        foreignField: "_id",
+                        as: "sizeData"
+                    }
+                },
+                {
+                    $unwind: '$foodData'
+                }
+            ])
+            res.status(200).json(infoFoods)
+        } catch (error) {
+            res.status(500).json(error)
         }
     }
 }

@@ -42,18 +42,13 @@ function AddFood(props) {
 
   const updateSize = (sizeValue) => {
     if (sizeValue === "S") {
-      alert("S")
       setURL(apiSizeSmall)
     }
     else if (sizeValue === "M") {
-      alert("M")
       setURL(apiSizeMedium)
-      console.log(url)
     }
     else if (sizeValue === "L") {
-      alert("L")
       setURL(apiSizeLarge)
-      console.log(url)
     }
   }
 

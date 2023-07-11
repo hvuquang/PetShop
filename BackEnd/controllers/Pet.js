@@ -112,6 +112,54 @@ const petController = {
         } catch (error) {
             res.status(500).json(error);
         }
+    },
+    searchPet : async(req , res)=>{
+        const namePet = req.body.namePet
+        try {
+            const regexPattern = new RegExp(namePet, 'i')
+            const pets = await productModel.find({ name: { $regex: regexPattern }, product_type: 'Pet' })
+            const petIds = pets.map(pet => pet._id)
+            const infoPet = await productModel.aggregate([
+                {
+                  $match : {
+                    _id : {
+                        $in : petIds
+                    }
+                  }  
+                },
+                {
+                    $lookup : {
+                        from : 'pets' ,
+                        localField: 'id',
+                        foreignField: '_id',
+                        as: 'petData' 
+                    } 
+                },
+                {
+                    $lookup: {
+                        from: 'colors',
+                        localField: 'petData.color_id',
+                        foreignField: '_id',
+                        as: 'colorData'
+                    }
+                },
+                {
+                    $unwind : '$petData'
+                }
+            ])
+            res.status(200).json(infoPet)
+        } catch (error) {
+            res.status(500).json(error)
+        }
+    },
+    countPet : async(req,res)=>{
+        try {
+            const countPet = await productModel.find({product_type : "Pet"}).count()
+            res.status(200).json(countPet)
+        } catch (error) {
+            res.status(500).json(error)
+        }
+        
     }
 }
 

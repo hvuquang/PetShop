@@ -3,6 +3,7 @@ import "./Card.css";
 import { Link } from "react-router-dom";
 import { bool } from "prop-types";
 import dogimg from "../../images/golden.png"
+import axios from "axios"
 
 export default function Card(props) {
   const cardtype = props.cardtype
@@ -15,11 +16,21 @@ export default function Card(props) {
   let price = 0
   let id = props.id
 
+  const addToCartHandle = (idProduct)=>{
+    axios.put('http://localhost:8000/v1/account/addProduct/64461d96abb7f27194574b94',{
+      product : idProduct
+    })
+    alert('Thêm vào giỏ hàng thành công')
+  }
+
+
   function CardType() {
     if (props.cardtype === "pet") {
       link = "/petpage/" + id
     } else if (props.cardtype === "food") {
       link = "/foodpage/" + id
+    } else if (props.cardtype === "accessory") {
+      link = "/accessorypage/" + id
     }
   }
 
@@ -41,6 +52,11 @@ export default function Card(props) {
       cardTitle = props.petI !== undefined ? props.petI.name : "Golden Treiver"
       price = props.petI !== undefined ? props.petI.petData.price : "8000000"
       shortDescription(props.petI)
+    }
+    else if (props.cardtype === "accessory") {
+      cardTitle = props.accessoryI !== undefined ? props.accessoryI.name : "Chuồng chó vải"
+      price = props.accessoryI !== undefined ? props.accessoryI.accessoryData.price : "8000000"
+      shortDescription(props.accessoryI)
     }
   }
 
@@ -84,7 +100,9 @@ export default function Card(props) {
         <p class="card__price">
           {price} VND
         </p>
-        <Link params={{id: id}} to={link}>More info</Link> <p>➡️</p>
+        <Link id="link" params={{id: id}} to={link}>Chi tiết ➡️</Link>
+        <br />
+        <button id="addCart" onClick={()=>addToCartHandle(id)}>Thêm</button>
       </div>
     </article>
   );

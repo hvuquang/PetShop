@@ -65,7 +65,7 @@ const serviceController = {
             const id = req.params._id
             const product = await productModel.findById(id)
             const serviceId = product.id
-            await petModel.findByIdAndDelete(serviceId)
+            await serviceModel.findByIdAndDelete(serviceId)
             await productModel.findByIdAndDelete(id)
             res.status(200).json("Xóa thành công")
         } catch (error) {
@@ -97,6 +97,15 @@ const serviceController = {
         } catch (error) {
             res.status(500).json(error);
         }
+    },
+    countService: async (req, res) => {
+        try {
+            const countService = await productModel.find({ product_type: "Service" }).count()
+            res.status(200).json(countService)
+        } catch (error) {
+            res.status(500).json(error)
+        }
+
     }
 }
 

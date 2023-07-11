@@ -1,19 +1,11 @@
 const mongoose = require('mongoose')
 
 const orderDetailSchema = new mongoose.Schema({
-    description : {
-        type : String ,
-        required : true
-    },
-    quantity : {
-        type : Number ,
-        required : true
-    },
-    product_id : {
+    product_id : [{
         type : mongoose.Schema.Types.ObjectId ,
         ref : 'Product' , 
         required : true
-    },
+    }],
     subtotal : {
         type : Number , 
         required : true

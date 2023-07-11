@@ -8,6 +8,7 @@ import AddFood from "../AddFoodPage/AddFood";
 function Food() {
   const [foodList, setFoodList] = useState([]);
   const [modalState, setmodalState] = useState(false);
+  const [countFood , setCountFood] = useState()
   const [food, setFood] = useState({
     foodName: "",
     foodSize: "",
@@ -26,16 +27,42 @@ function Food() {
   };
 
   function openModal(event) {
-    event.preventDefault()
+    event.preventDefault();
     setmodalState(!modalState);
-    
   }
 
-  useEffect(() => {
-    axios.get("http://localhost:8000/v1/food/readAllFood").then((res) => {
-      setFoodList(res.data)
-    });
-  });
+  // useEffect(() => {
+  //   axios.get("http://localhost:8000/v1/food/readAllFood").then((res) => {
+  //     setFoodList(res.data)
+  //   });
+  // }, [foodList]);
+
+  useEffect(
+    () => {
+      let val = document.getElementById("search-input").value;
+      // console.log(val)
+      if (val !== "") {
+      // // console.log(1)
+      axios
+        .post("http://localhost:8000/v1/food/searchFood", {
+          nameFood: val,
+        })
+        .then((res) => {
+          // console.log(1)
+          // console.log(res.data)
+          setFoodList(res.data);
+        });
+      }
+    else {
+      axios.get("http://localhost:8000/v1/food/readAllFood").then((res) => {
+        setFoodList(res.data)
+      });
+    }
+    axios.get('http://localhost:8000/v1/food/countFood').then(res => {
+      setCountFood(res.data)
+    })
+}, [foodList]
+)
 
   return (
     <div className="home-section">
@@ -46,9 +73,17 @@ function Food() {
           <img id="add-icon" src={addicon} alt="add pet icon" />
         </div>
       </div>
+      <div className="pet-amount">Số lượng : {countFood}</div>
       <div id="home-container">
         {foodList.map((foodItem, key) => {
-          return <Card cardtype="food" foodI={foodItem} key={key} id={foodItem._id}/>;
+          return (
+            <Card
+              cardtype="food"
+              foodI={foodItem}
+              key={key}
+              id={foodItem._id}
+            />
+          );
         })}
       </div>
       <AddFood

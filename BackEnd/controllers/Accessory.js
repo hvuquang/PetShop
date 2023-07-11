@@ -109,7 +109,7 @@ const accessoryController = {
     },
     countAccessory: async (req, res) => {
         try {
-            const countAccessory = await accessoryModel.count()
+            const countAccessory = await productModel.find({product_type : "Accessory"}).count()
             res.status(200).json(countAccessory)
         } catch (error) {
             res.status(500).json(error)
@@ -169,6 +169,51 @@ const accessoryController = {
             res.status(200).json({ updatedProduct, updatedAccessory });
         } catch (error) {
             res.status(500).json(error);
+        }
+    },
+    searchAccessory: async (req, res) => {
+        const nameAccessory = req.body.nameAccessory
+        try {
+            const regexPattern = new RegExp(nameAccessory, 'i')
+            const accessoriess = await productModel.find({ name: { $regex: regexPattern }, product_type: 'Accessory' })
+            const accessoriesIds = accessoriess.map(accessory => accessory._id)
+            const infoFoods = await productModel.aggregate([
+                {
+                    $match: {
+                        _id: {
+                            $in: accessoriesIds
+                        }
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "accessories",
+                        localField: "id",
+                        foreignField: "_id",
+                        as: "accessoryData"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "colors",
+                        localField: "accessoryData.color_id",
+                        foreignField: "_id",
+                        as: "colorData"
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "sizes",
+                        localField: "accessoryData.size_id",
+                        foreignField: "_id",
+                        as: "sizeData"
+                    }
+                },
+                
+            ])
+            res.status(200).json(infoFoods)
+        } catch (error) {
+            res.status(500).json(error)
         }
     }
 }

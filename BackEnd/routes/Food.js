@@ -10,5 +10,6 @@ router.get('/countFood', foodController.countFood)
 router.get('/readFood/:_id', foodController.readFood)
 router.delete('/deleteFood/:_id', foodController.deleteFood)
 router.put('/updateFood/:_id', foodController.updateFood)
+router.post('/searchFood', foodController.searchFood)
 
 module.exports = router

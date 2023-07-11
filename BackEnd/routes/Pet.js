@@ -7,5 +7,7 @@ router.get('/readAllPet' , petController.readAllPet)
 router.get('/readPet/:_id', petController.readPet)
 router.delete('/deletePet/:_id', petController.deletePet)
 router.put('/updatePet/:_id', petController.updatePet)
+router.post('/searchPet',petController.searchPet)
+router.get('/countPet', petController.countPet)
 
 module.exports = router
